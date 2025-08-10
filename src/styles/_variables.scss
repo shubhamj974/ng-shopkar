@@ -1,0 +1,24 @@
+// 🎨 Colors
+$primary-color: #89193e;
+$secondary-color: #f50057;
+
+$search-color: #eee;
+
+$background-color: #fff;
+$black-color: #000;
+
+// 📏 Spacing
+$spacing-xs: 4px;
+$spacing-sm: 8px;
+$spacing-md: 16px;
+$spacing-lg: 24px;
+
+// ✍️ Fonts
+$font-family-base: "Roboto", sans-serif;
+
+// 📱 Breakpoints
+$breakpoints: (
+  "sm": 768px,
+  "md": 992px,
+  "lg": 1200px,
+);

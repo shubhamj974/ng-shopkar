@@ -1,0 +1,17 @@
+// Responsive Mixin
+@mixin respond-to($breakpoint) {
+  @if map-has-key($breakpoints, $breakpoint) {
+    @media (max-width: map-get($breakpoints, $breakpoint)) {
+      @content;
+    }
+  } @else {
+    @warn "Unfortunately, #{$breakpoint} is not a valid breakpoint name.";
+  }
+}
+
+// Flex Center Helper
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

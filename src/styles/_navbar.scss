@@ -1,0 +1,100 @@
+.navbar {
+  display: flex;
+  align-items: center;
+  background-color: $background-color;
+  padding: $spacing-md $spacing-lg;
+  color: white;
+  font-family: $font-family-base;
+
+  .navbar-left .logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: $black-color;
+    text-decoration: none;
+    margin-right: $spacing-lg;
+  }
+
+  .navbar-center {
+    flex: 1;
+    display: flex;
+    max-width: 700px;
+
+    input {
+      flex: 1;
+      padding: $spacing-sm;
+      border: none;
+      outline: none;
+      border-radius: $spacing-xs;
+      font-size: 1rem;
+      background-color: $search-color;
+    }
+  }
+
+  .navbar-menu {
+    display: flex;
+    list-style: none;
+    margin: 0 $spacing-md;
+
+    li {
+      margin: 0 $spacing-sm;
+
+      a {
+        color: $black-color;
+        text-decoration: none;
+        font-weight: 500;
+        &:hover {
+          color: lighten($primary-color, 30%);
+        }
+      }
+    }
+  }
+
+  .navbar-right {
+    display: flex;
+    align-items: center;
+
+    .login-btn {
+      background: $background-color;
+      color: $black-color;
+      border: none;
+      padding: $spacing-sm $spacing-md;
+      font-weight: bold;
+      cursor: pointer;
+      margin-right: $spacing-md;
+    }
+
+    .cart {
+      display: flex;
+      align-items: center;
+      color: $background-color;
+      text-decoration: none;
+
+      .material-icons {
+        margin-right: $spacing-xs;
+      }
+    }
+  }
+
+  @include respond-to("sm") {
+    flex-wrap: wrap;
+
+    .navbar-center {
+      order: 2;
+      width: 100%;
+      margin: $spacing-sm 0;
+    }
+
+    .navbar-menu {
+      order: 3;
+      flex-wrap: wrap;
+      width: 100%;
+      justify-content: center;
+    }
+
+    .navbar-right {
+      order: 1;
+      width: 100%;
+      justify-content: flex-end;
+    }
+  }
+}

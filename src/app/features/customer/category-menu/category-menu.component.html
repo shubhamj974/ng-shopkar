@@ -1,0 +1,48 @@
+<div class="category-menu">
+  @for(cat of categories; track cat.id){
+  <div
+    class="category-card"
+    (mouseenter)="cat.showDropdown = true"
+    (mouseleave)="cat.showDropdown = false"
+  >
+    <a [routerLink]="cat.link" class="category-link">
+      <div class="img-container">
+        <img [src]="cat.imageUrl" [alt]="cat.label" />
+      </div>
+
+      <!-- Label + Arrow in one row -->
+      <div class="label-container">
+        <span class="label">{{ cat.label }}</span>
+        @if(cat.subcategories?.length){
+        <span class="arrow" [class.open]="cat.showDropdown">▼</span>
+        }
+      </div>
+    </a>
+
+    <!-- Dropdown -->
+    @if(cat.subcategories?.length && cat.showDropdown){
+    <div class="dropdown">
+      <ul>
+        @for(sub of cat.subcategories; track sub.id){
+        <li>
+          <a [routerLink]="sub.link">{{ sub.label }}</a>
+
+          @if (sub.children.length ) {
+          <div class="dropdown-right">
+            <ul>
+              @for (child of sub.children; track child.id) {
+              <li>
+                <a [routerLink]="child.link">{{ child.label }}</a>
+              </li>
+              }
+            </ul>
+          </div>
+          }
+        </li>
+        }
+      </ul>
+    </div>
+    }
+  </div>
+  }
+</div>

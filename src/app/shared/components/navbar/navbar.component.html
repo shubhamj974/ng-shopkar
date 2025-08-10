@@ -1,0 +1,35 @@
+<nav class="navbar">
+  <!-- Logo -->
+  <div class="navbar-left">
+    <a href="/" class="logo">
+      <img
+        src="assets/images/fkheaderlogo_exploreplus-44005d.svg"
+        alt="Shopkar Logo"
+      />
+    </a>
+  </div>
+
+  <!-- Search -->
+  <div class="navbar-center">
+    <input type="text" placeholder="Search for products, brands and more" />
+  </div>
+
+  <!-- Menu -->
+  <ul class="navbar-menu">
+    @for(item of menuItems; track item.id){
+    <li>
+      <a [routerLink]="item.route">{{ item.label }}</a>
+    </li>
+
+    }
+  </ul>
+
+  <!-- Right -->
+  <div class="navbar-right">
+    <button class="login-btn">Login</button>
+    <a href="/cart" class="cart">
+      <span class="material-icons">shopping_cart</span>
+      Cart
+    </a>
+  </div>
+</nav>
