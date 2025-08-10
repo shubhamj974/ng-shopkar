@@ -123,5 +123,13 @@
         }
       }
     }
+    .right-arrow {
+      float: right;
+      font-size: 16px; /* Medium size */
+      font-weight: 500;
+      color: #000;
+      font-weight: 500;
+      transition: transform 0.2s ease, color 0.2s ease;
+    }
   }
 }

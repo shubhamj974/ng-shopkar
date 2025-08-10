@@ -25,7 +25,12 @@
       <ul>
         @for(sub of cat.subcategories; track sub.id){
         <li>
-          <a [routerLink]="sub.link">{{ sub.label }}</a>
+          <a [routerLink]="sub.link"
+            >{{ sub.label }}
+            @if(sub.children.length){
+            <span class="right-arrow">›</span>
+            }
+          </a>
 
           @if (sub.children.length ) {
           <div class="dropdown-right">
