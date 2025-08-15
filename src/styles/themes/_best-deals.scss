@@ -1,0 +1,68 @@
+.deals-wrapper {
+  background: #fff;
+  padding: 12px;
+  margin: $m-10;
+}
+
+.deals-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.deals-header h2 {
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.view-all {
+  color: #2874f0;
+  font-size: 14px;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.deals-scroll {
+  display: flex;
+  gap: 71px;
+}
+
+.deal-card {
+  flex: 0 0 auto;
+  width: 150px;
+  text-align: center;
+  text-decoration: none;
+  color: #212121;
+}
+
+.deal-img {
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  border-radius: 4px;
+  background: #f9f9f9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.deal-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.deal-title {
+  font-size: 14px;
+  margin-top: 6px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.deal-price {
+  font-size: 13px;
+  color: #388e3c;
+  font-weight: 500;
+}

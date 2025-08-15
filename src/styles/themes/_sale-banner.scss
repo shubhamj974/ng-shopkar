@@ -1,0 +1,13 @@
+.my-swiper {
+  width: 98%; /* Full screen width */
+  height: 40vh; /* 60% of viewport height */
+  max-height: 500px; /* Optional: limit for large screens */
+  margin: $m-10;
+}
+
+.my-swiper swiper-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Keeps image proportions, crops excess */
+  border-radius: 0; /* No rounded corners for full width */
+}

@@ -1,0 +1,51 @@
+export const homeDeals = [
+  {
+    id: 1,
+    img: 'https://rukminim1.flixcart.com/image/120/120/xif0q/umbrella/l/o/y/39-4-1pc-auto-8-ribs-umbrella-for-sun-rain-protection-man-woman-original-imahycxchaycxsrz.jpeg?q=80',
+    title: 'Umbrellas',
+    price: 'Up to 85% Off',
+    link: '/product/umbrellas',
+  },
+  {
+    id: 2,
+    img: 'https://rukminim1.flixcart.com/image/120/120/kg9qbgw0/mosquito-net/8/e/h/polyester-adults-pop-up-foldable-double-bed-king-size-mosquito-original-imafwjf9gwdzfw8n.jpeg?q=80',
+    title: 'Mosquito Nets',
+    price: 'From ₹249',
+    link: '/product/mosquito-nets',
+  },
+  {
+    id: 3,
+    img: 'https://rukminim1.flixcart.com/image/120/120/xif0q/step-ladder/h/2/u/no-74-8-no-pack-of-1-aps-1306-apex-white-step4-150-6-plantex-original-imah8nhghypyhv8g.jpeg?q=80',
+    title: 'Home Utilities',
+    price: 'Up to 85% Off',
+    link: '/product/home-utilities',
+  },
+  {
+    id: 4,
+    img: 'https://rukminim1.flixcart.com/image/120/120/xif0q/faucet/f/q/i/wall-mount-installation-type-smartbuy-fusion-flexible-sink-original-imagzkajdnunnxrc.jpeg?q=80',
+    title: 'Faucets',
+    price: 'Up to 80% Off',
+    link: '/product/faucets',
+  },
+  {
+    id: 5,
+    img: 'https://rukminim1.flixcart.com/image/120/120/xif0q/ceiling-lamp/3/i/9/3-26-26-1-9-kiy-luster-thali-kiyaan-original-imagkv7hszz7knbr.jpeg?q=80',
+    title: 'Ceiling Lamp',
+    price: 'Min. 50% Off',
+    link: '/product/ceiling-lamp',
+  },
+  {
+    id: 6,
+    img: 'https://rukminim1.flixcart.com/image/120/120/xif0q/shopsy-pillow/p/k/f/10-sleeping-pillow-2-dhuvnn-sleepwell-original-imah9svkcdbd5z3x.jpeg?q=80',
+    title: 'Pillows',
+    price: 'From ₹199',
+    link: '/product/pillows',
+  },
+  {
+    id: 7,
+    img: 'https://rukminim1.flixcart.com/image/120/120/xif0q/shopsy-plant-sapling/b/m/r/perennial-yes-yes-platone-18-pack-of-1-brazilian-lucky-bamboo-original-imah52tnjpghjwpr.jpeg?q=80',
+    title: 'Indoor Plants',
+    price: 'Up to 85% Off',
+    link: '/product/indoor-plants',
+  },
+];

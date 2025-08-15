@@ -1,0 +1,17 @@
+<div class="deals-wrapper">
+  <div class="deals-header">
+    <h2>{{ dealName }}</h2>
+  </div>
+
+  <div class="deals-scroll">
+    @for(deal of bestDeals;track deal.id){
+    <a class="deal-card" [href]="deal.link">
+      <div class="deal-img">
+        <img [src]="deal.img" [alt]="deal.title" />
+      </div>
+      <div class="deal-title">{{ deal.title }}</div>
+      <div class="deal-price">{{ deal.price }}</div>
+    </a>
+    }
+  </div>
+</div>

@@ -1,0 +1,51 @@
+export const bestDeals = [
+  {
+    id: 1,
+    img: 'https://rukminim1.flixcart.com/image/240/240/xif0q/mobile/m/n/v/-original-imahavdveeghweea.jpeg?q=60',
+    title: 'Vivo T4x 5G',
+    price: 'From ₹13,499',
+    link: '/product/vivo-t4x',
+  },
+  {
+    id: 2,
+    img: 'https://rukminim1.flixcart.com/image/120/120/xif0q/mobile/j/x/j/-original-imahbfmdgpjvgecg.jpeg?q=80',
+    title: 'Motorola Edge 60 Fusion 5G',
+    price: 'From ₹20,999',
+    link: '/product/motorola-edge-60-fusion-5G',
+  },
+  {
+    id: 3,
+    img: 'https://rukminim1.flixcart.com/image/120/120/xif0q/mobile/k/t/x/-original-imahbgpzbumfzkbh.jpeg?q=80',
+    title: 'Vivo T4 5G',
+    price: 'From ₹20,999',
+    link: '/product/vivo-t4-5G',
+  },
+  {
+    id: 4,
+    img: 'https://rukminim1.flixcart.com/image/120/120/xif0q/mobile/f/k/e/-original-imahbfd4zqn9zazz.jpeg?q=80',
+    title: 'Galaxy S24 FE 5G',
+    price: 'From ₹37,999',
+    link: '/product/galaxy-s24-fe-5G',
+  },
+  {
+    id: 5,
+    img: 'https://rukminim1.flixcart.com/image/120/120/xif0q/mobile/n/l/u/-original-imah2fjd7wfd9ksh.jpeg?q=80',
+    title: 'Vivo T4 Lite 5G',
+    price: 'From ₹9,999',
+    link: '/product/vivo-t4-lite-5G',
+  },
+  {
+    id: 6,
+    img: 'https://rukminim1.flixcart.com/image/120/120/xif0q/mobile/r/s/z/-original-imahcfwmdvbcgdzs.jpeg?q=80',
+    title: 'Nothing Phone 3a',
+    price: 'From ₹21,999',
+    link: '/product/nothing-phone-3a',
+  },
+  {
+    id: 7,
+    img: 'https://rukminim1.flixcart.com/image/120/120/xif0q/mobile/g/r/b/-original-imahd872ftjsb6xh.jpeg?q=80',
+    title: 'Vivo T4 5G',
+    price: 'From ₹20,999',
+    link: '/product/vivo-t4-5G',
+  },
+];

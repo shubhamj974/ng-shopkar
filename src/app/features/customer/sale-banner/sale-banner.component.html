@@ -1,0 +1,21 @@
+<swiper-container
+  class="my-swiper"
+  pagination="true"
+  pagination-dynamic-bullets="true"
+  pagination-clickable="true"
+  navigation="false"
+  loop="true"
+  autoplay="true"
+  autoplay-delay="2000"
+  autoplay-disable-on-interaction="false"
+>
+  <swiper-slide *ngFor="let banner of saleBanners">
+    <a [href]="banner.link" class="block">
+      <img
+        [src]="banner.img"
+        [alt]="banner.alt"
+        class="w-full h-full object-cover"
+      />
+    </a>
+  </swiper-slide>
+</swiper-container>

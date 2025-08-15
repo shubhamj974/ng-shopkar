@@ -4,8 +4,26 @@ body {
 }
 body {
   margin: 0;
+  padding: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
   background-color: #eee;
+  overflow-y: scroll;
+  scrollbar-width: none;
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  display: none;
+}
+
+@import "swiper/css/bundle";
+
+.my-swiper {
+  height: 400px;
+  width: 100%;
+}
+.my-swiper swiper-slide {
+  position: relative;
 }
 
 @import "styles/main";
