@@ -1,6 +1,6 @@
 export const environment = {
   production: false,
-  //   apiUrl: 'https://uat-api.example.com',
+  //   apiUrl: 'https://dev.shopkar.com',
   //   apiUrl: 'https://shopkar.com',
-  apiUrl: 'https://localhost:3009',
+  apiUrl: 'http://localhost:3009',
 };

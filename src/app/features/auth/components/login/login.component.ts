@@ -8,6 +8,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { AuthService } from '../../service/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -33,21 +34,18 @@ export default class LoginComponent {
       name: 'Facebook',
     },
   ];
-  constructor(private fb: FormBuilder) {}
+  constructor(private authService: AuthService) {}
 
-  ngOnInit(): void {
-    this.loginForm = this.fb.group({
-      email: ['info@codedthemes.com', [Validators.required, Validators.email]],
-      password: ['123456789', [Validators.required, Validators.minLength(6)]],
-      keepSignedIn: [true],
+  ngOnInit(): void {}
+  login(email: string, password: string, keepSignedIn: boolean) {
+    const params = {
+      email: email,
+      password: password,
+      // keepSignedIn: keepSignedIn,
+    };
+    console.log(params);
+    this.authService.login(params).subscribe((res) => {
+      console.log(res);
     });
-  }
-  onLogin() {
-    if (this.loginForm.invalid) {
-      return;
-    }
-    const val = this.loginForm.value;
-    console.log('dsds', val);
-    // this._authServices.login(userName, userPass);
   }
 }
