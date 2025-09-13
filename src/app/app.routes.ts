@@ -3,6 +3,11 @@ import { RouterModule, Routes } from '@angular/router';
 
 export const routes: Routes = [
   {
+    path: 'auth',
+    loadChildren: () =>
+      import('./features/auth/auth.routes').then((m) => m.AuthRoutes),
+  },
+  {
     path: 'admin',
     loadChildren: () =>
       import('./features/admin/admin.module').then((m) => m.AdminModule),
@@ -13,9 +18,9 @@ export const routes: Routes = [
       import('./features/seller/seller.module').then((m) => m.SellerModule),
   },
   {
-    path: '',
+    path: 'customer',
     loadChildren: () =>
-      import('./features/customer//customer.routes').then(
+      import('./features/customer/customer.routes').then(
         (m) => m.CustomerRoutes
       ),
   },
@@ -29,15 +34,17 @@ export const routes: Routes = [
   {
     path: 'support',
     loadChildren: () =>
-      import('./features/support/suppot.module').then((m) => m.SuppotModule),
+      import('./features//support/suppot.module').then((m) => m.SuppotModule),
   },
+  // Default landing page (maybe customer home)
   {
     path: '',
-    redirectTo: '', // or a public landing page
+    redirectTo: 'customer',
     pathMatch: 'full',
   },
+  // Wildcard route for 404
   {
     path: '**',
-    redirectTo: '', // fallback route
+    redirectTo: 'customer',
   },
 ];
