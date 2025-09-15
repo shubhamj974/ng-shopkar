@@ -5,7 +5,7 @@
 
   <div class="deals-scroll">
     @for(deal of bestDeals;track deal.id){
-    <a class="deal-card" [href]="deal.link">
+    <a class="deal-card" [routerLink]="['/customer/product', deal.id]">
       <div class="deal-img">
         <img [src]="deal.img" [alt]="deal.title" />
       </div>
