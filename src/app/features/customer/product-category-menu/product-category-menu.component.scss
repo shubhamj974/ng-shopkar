@@ -1,0 +1,36 @@
+.product-category-menu {
+    background: white;
+    display: flex;
+    justify-content: space-around;
+
+    .category-container {
+        display: flex;
+        align-items: center;
+        gap: 50px;
+        height: 46px;
+        color: #000;
+        font-size: 13px;
+        font-weight: 500;
+    }
+
+    .category-item {
+        display: inline-flex;
+        align-items: center;
+        ;
+        gap: 4px;
+        cursor: pointer;
+        text-decoration: none;
+        color: #000;
+        transition: color 0.2s;
+
+        &:hover {
+            color: #2874f0;
+        }
+
+        .arrow {
+            width: 12px;
+            height: 12px;
+            fill: #000;
+        }
+    }
+}

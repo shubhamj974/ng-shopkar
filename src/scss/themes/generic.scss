@@ -95,9 +95,7 @@ $i: 1;
 .text-header {
   color: var(--bs-heading-color);
 }
-.bg-body {
-  background: var(--bs-body-bg);
-}
+ 
 @each $color, $value in $theme-colors {
   .bg-light-#{$color} {
     background: shift-color($value, $soft-bg-level);

@@ -1,0 +1,29 @@
+<div class="product-category-menu">
+  <div class="category-container">
+    @for (category of categories; track category.id) {
+      
+      @if (category.link) {
+        <a [routerLink]="category.link" class="category-item">
+          {{ category.name }}
+        </a>
+      } @else {
+        <span class="category-item">
+          {{ category.name }}
+          <svg
+            width="12"
+            height="8"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+            class="arrow"
+          >
+            <path
+              d="M7 10l5 5 5-5H7z"
+              fill="#000"
+            />
+          </svg>
+        </span>
+      }
+
+    }
+  </div>
+</div>

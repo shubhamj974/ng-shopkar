@@ -1,1 +1,63 @@
-<p>product-list works!</p>
+<app-product-category-menu></app-product-category-menu>
+<div class="products">
+    <!-- Filter -->
+    <div class="filter">
+
+    </div>
+    <!-- Product List -->
+    <div class="product-list">
+        @for (product of products; track product.id) {
+        <div class="product-card">
+            <a [routerLink]="['/product', product.id]" target="_blank">
+                <div class="product-container">
+                    <!-- Left: Product Image -->
+                    <div class="product-image">
+                        @if(product.badge){
+                        <div class="badge">{{ product.badge }}</div>
+                        }
+                        <img [src]="product.imageUrl" [alt]="product.name" />
+                        <div class="compare-box">
+                            <label>
+                                <input type="checkbox" />
+                                <span>Add to Compare</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Right: Product Details -->
+                    <div class="product-details">
+                        <h3 class="product-name">{{ product.name }}</h3>
+                        <div class="rating">
+                            ⭐ {{ product.rating }} ({{ product.reviews }} Reviews)
+                        </div>
+
+                        <ul class="specs">
+                            @for (spec of product.specs; track spec) {
+                            <li>{{ spec }}</li>
+                            }
+                        </ul>
+
+                        <div class="pricing">
+                            <span class="price">₹{{ product.price }}</span>
+                            @if(product.originalPrice){
+                            <span class="original-price">₹{{ product.originalPrice }}</span>
+                            }
+                            @if(product.discount){
+                            <span class="discount">{{ product.discount }}</span>
+                            }
+                        </div>
+
+                        @if(product.exchangeOffer){
+                        <div class="exchange-offer">{{ product.exchangeOffer }}</div>
+                        }
+                        @if(product.bankOffer){
+                        <div class="bank-offer">{{ product.bankOffer }}</div>
+                        }
+                    </div>
+                </div>
+            </a>
+        </div>
+        }
+    </div>
+
+</div>
