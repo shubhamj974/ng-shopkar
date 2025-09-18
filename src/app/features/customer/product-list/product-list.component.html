@@ -2,7 +2,10 @@
 <div class="products">
     <!-- Filter -->
     <div class="filter">
-
+        <div class="card">
+            <h3>Filter</h3>
+            <ul></ul>
+        </div>
     </div>
     <!-- Product List -->
     <div class="product-list">
@@ -23,13 +26,23 @@
                             </label>
                         </div>
                     </div>
+                    <div class="add-cart">❤</div>
 
                     <!-- Right: Product Details -->
                     <div class="product-details">
                         <h3 class="product-name">{{ product.name }}</h3>
-                        <div class="rating">
-                            ⭐ {{ product.rating }} ({{ product.reviews }} Reviews)
+                        <div class="rating-box">
+                            <span class="rating-value">
+                                {{ product.rating }}
+                                <span class="star">★</span>
+                            </span>
+                            <span class="rating-count">
+                                {{ product.ratings | number }} Ratings
+                                <span class="and">&amp;</span>
+                               {{ product.reviews | number }} Reviews
+                            </span>
                         </div>
+
 
                         <ul class="specs">
                             @for (spec of product.specs; track spec) {
@@ -41,26 +54,29 @@
                     </div>
                     <div class="product-details">
                         <div class="pricing">
-                            <span class="price">₹{{ product.price }}</span>
-                            @if(product.originalPrice){
-                            <span class="original-price">₹{{ product.originalPrice }}</span>
-                            }
-                            @if(product.discount){
-                            <span class="discount">{{ product.discount }}</span>
-                            }
-                        </div>
+                            <span class="price">₹{{ product.price | number}}</span>
 
-                        @if(product.exchangeOffer){
-                        <div class="exchange-offer">{{ product.exchangeOffer }}</div>
+                        </div>
+                        @if(product.originalPrice){
+                        <span class="original-price">₹{{ product.originalPrice | number}}</span>
                         }
-                        @if(product.bankOffer){
-                        <div class="bank-offer">{{ product.bankOffer }}</div>
+                        @if(product.discount){
+                        <span class="discount">{{ product.discount }}</span>
                         }
+                        @if(product.stock < 10){ <div class="stock">Only few left
                     </div>
+                    }
+                    @if(product.exchangeOffer){
+                    <div class="exchange-offer">Upto <span class="offer-price">₹{{ product.exchangeOffer | number}}</span> Off on Exchange</div>
+                    }
+                    @if(product.bankOffer){
+                    <div class="bank-offer">{{ product.bankOffer }}</div>
+                    }
                 </div>
-            </a>
         </div>
-        }
+        </a>
     </div>
+    }
+</div>
 
 </div>
