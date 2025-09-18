@@ -9,7 +9,8 @@
 
             <ul class="filter-categories-list">
                 @for(category of categories; track category.id){
-                <li class="filter-categories-list-item" [ngClass]="{ 'filter-categories-list-item--dark': category.highlight }">
+                <li class="filter-categories-list-item"
+                    [ngClass]="{ 'filter-categories-list-item--dark': category.highlight }">
                     <span class="arrow">
                         <svg width="10" height="10" viewBox="0 0 16 27" xmlns="http://www.w3.org/2000/svg">
                             <path d="M16 23.207L6.11 13.161 16 3.093 12.955 0 0 13.161l12.955 13.161z"></path>
@@ -19,6 +20,30 @@
                 </li>
                 }
             </ul>
+        </section>
+
+        <section class="filter-card-brand">
+            <div class="filter-card-brand-header">Brand</div>
+            <ul class="filter-card-brand-list">
+                <li class="filter-card-brand-list-item">
+                    <input type="checkbox" id="brand1" class="brand-checkbox" />
+                    <label for="brand1">realme</label>
+                </li>
+                <li class="filter-card-brand-list-item">
+                    <input type="checkbox" id="brand2" class="brand-checkbox" />
+                    <label for="brand2">Samsung</label>
+                </li>
+                <li class="filter-card-brand-list-item">
+                    <input type="checkbox" id="brand3" class="brand-checkbox" />
+                    <label for="brand3">Apple</label>
+                </li>
+                <li class="filter-card-brand-list-item">
+                    <input type="checkbox" id="brand4" class="brand-checkbox" />
+                    <label for="brand4">POCO</label>
+                </li>
+            </ul>
+
+            <div class="filter-card-brand-more">145 more</div>
         </section>
     </div>
 
