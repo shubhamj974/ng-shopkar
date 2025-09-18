@@ -1,17 +1,91 @@
 .products {
     display: grid;
     grid-template-columns: 250px 1fr;
-    gap: $spacing-md;
+    gap: $space-10;
     padding: $space-10;
     // background: #f1f3f6;
     // margin: $m-10;
     margin-top: 0;
 }
 
+.filter {
+    &-card {
+        background-color: $white-clor; // fixed typo $white-clor -> $white-color
+    }
+
+    &-heading {
+        font-size: 18px;
+        font-weight: $font-weight-500;
+        color: #212121;
+        padding: $space-14;
+        border-bottom: 1px solid $bg;
+    }
+
+    &-categories {
+        padding: $space-14;
+        border-bottom: 1px solid $bg;
+
+        &-header {
+            font-size: $space-12;
+            font-weight: $font-weight-500;
+            color: $black-color;
+            margin-bottom: $spacing-sm;
+        }
+
+        &-list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+
+            &-item {
+                display: flex;
+                align-items: center;
+                margin-bottom: $spacing-sm;
+                color: $black-color;
+
+                .arrow {
+                    display: flex;
+                    align-items: center;
+                    margin-right: $space-6;
+                    cursor: pointer;
+
+                    svg {
+                        fill: #878787;
+                    }
+                }
+
+                .link {
+                    text-decoration: none;
+                    font-size: 13px;
+                    color: #878787;
+                    cursor: pointer;
+
+                    &:hover {
+                        color: #2874f0; // Flipkart blue
+                    }
+                }
+
+                // 👉 Dark mode variant
+                &--dark {
+                    .link {
+                        color: $black-color;
+                        font-weight: $font-weight-500;
+                    }
+
+                    .arrow svg {
+                        fill: $white-clor;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
 .product-list {
     display: flex;
     flex-direction: column;
-    gap: $spacing-md;
+    gap: $space-10;
 
     .product-card {
         overflow: hidden;

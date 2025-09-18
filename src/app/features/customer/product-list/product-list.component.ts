@@ -2,12 +2,12 @@ import { Component } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { ProductCategoryMenuComponent } from '../product-category-menu/product-category-menu.component';
-import { DecimalPipe, JsonPipe } from '@angular/common';
+import { CommonModule, DecimalPipe, JsonPipe } from '@angular/common';
 
 @Component({
   selector: 'app-product-list',
   standalone: true,
-  imports: [FormsModule, ReactiveFormsModule, RouterModule, ProductCategoryMenuComponent, DecimalPipe],
+  imports: [CommonModule,FormsModule, ReactiveFormsModule, RouterModule, ProductCategoryMenuComponent, DecimalPipe],
   templateUrl: './product-list.component.html',
   styleUrl: './product-list.component.scss'
 })
@@ -34,7 +34,11 @@ export class ProductListComponent {
       stock: 5,
       badge: 'Bestseller',
       bankOffer: 'Bank Offer',
-      exchangeOffer: 9100
+      exchangeOffer: 9100,
+      categories: [
+        { id: 1, name: 'Mobiles & Accessories', link: '/mobiles-accessories',highlight: false },
+        {id : 2, name: 'Mobiles', link: '/mobiles',highlight: true}
+      ]
     },
     {
       id: 'MOBH8VGV88UADK2Z',
@@ -56,7 +60,11 @@ export class ProductListComponent {
       stock: 8,
       badge: 'Bestseller',
       bankOffer: 'Bank Offer',
-      exchangeOffer: 9100
+      exchangeOffer: 9100,
+      categories: [
+        { id: 1, name: 'Mobiles & Accessories', link: '/mobiles-accessories',highlight: false },
+        {id : 2, name: 'Mobiles', link: '/mobiles',highlight: true}
+      ]
     },
     {
       id: 'MOBH8VGV88UADK2Z',
@@ -78,8 +86,27 @@ export class ProductListComponent {
       stock: 8,
       badge: 'Bestseller',
       bankOffer: 'Bank Offer',
-      exchangeOffer: 9100
+      exchangeOffer: 9100,
+      categories: [
+        { id: 1, name: 'Mobiles & Accessories', link: '/mobiles-accessories',highlight: false },
+        {id : 2, name: 'Mobiles', link: '/mobiles',highlight: true}
+      ]
     }
   ];
+  public categories : Array<any> = [];
+
+  ngOnInit(){
+    const categoryMap = new Map();
+
+  this.products.forEach(product => {
+    product.categories.forEach(cat => {
+      if (!categoryMap.has(cat.id)) {
+        categoryMap.set(cat.id, cat);
+      }
+    });
+  });
+
+  this.categories = Array.from(categoryMap.values());
+  }
 }
 

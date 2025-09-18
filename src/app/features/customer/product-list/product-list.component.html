@@ -1,12 +1,27 @@
 <app-product-category-menu></app-product-category-menu>
 <div class="products">
     <!-- Filter -->
-    <div class="filter">
-        <div class="card">
-            <h3>Filter</h3>
-            <ul></ul>
-        </div>
+    <div class="filter-card">
+        <p class="filter-heading">Filters</p>
+
+        <section class="filter-categories">
+            <div class="filter-categories-header">CATEGORIES</div>
+
+            <ul class="filter-categories-list">
+                @for(category of categories; track category.id){
+                <li class="filter-categories-list-item" [ngClass]="{ 'filter-categories-list-item--dark': category.highlight }">
+                    <span class="arrow">
+                        <svg width="10" height="10" viewBox="0 0 16 27" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M16 23.207L6.11 13.161 16 3.093 12.955 0 0 13.161l12.955 13.161z"></path>
+                        </svg>
+                    </span>
+                    <a class="link" [href]="category.link">{{ category.name }}</a>
+                </li>
+                }
+            </ul>
+        </section>
     </div>
+
     <!-- Product List -->
     <div class="product-list">
         @for (product of products; track product.id) {
@@ -39,7 +54,7 @@
                             <span class="rating-count">
                                 {{ product.ratings | number }} Ratings
                                 <span class="and">&amp;</span>
-                               {{ product.reviews | number }} Reviews
+                                {{ product.reviews | number }} Reviews
                             </span>
                         </div>
 
@@ -67,7 +82,8 @@
                     </div>
                     }
                     @if(product.exchangeOffer){
-                    <div class="exchange-offer">Upto <span class="offer-price">₹{{ product.exchangeOffer | number}}</span> Off on Exchange</div>
+                    <div class="exchange-offer">Upto <span class="offer-price">₹{{ product.exchangeOffer |
+                            number}}</span> Off on Exchange</div>
                     }
                     @if(product.bankOffer){
                     <div class="bank-offer">{{ product.bankOffer }}</div>
