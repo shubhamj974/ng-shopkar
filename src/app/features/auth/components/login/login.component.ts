@@ -43,7 +43,6 @@ export default class LoginComponent {
       password: password,
       // keepSignedIn: keepSignedIn,
     };
-    console.log(params);
     this.authService.login(params).subscribe((res) => {
       console.log(res);
     });

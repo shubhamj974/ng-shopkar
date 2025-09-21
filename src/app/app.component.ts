@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { NavbarComponent } from './shared/components/navbar/navbar.component';
+import { AuthService } from './features/auth/service/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -11,4 +12,8 @@ import { NavbarComponent } from './shared/components/navbar/navbar.component';
 })
 export class AppComponent {
   title = 'ng-shopkar';
+  private authService = inject(AuthService);
+
+  ngOnInit() {
+  }
 }
