@@ -1,5 +1,5 @@
 <div class="category-menu">
-  @for(cat of categories; track cat.id){
+  @for(cat of cate_menu; track cat.id){
   <div
     class="category-card"
     (mouseenter)="cat.showDropdown = true"
@@ -7,12 +7,12 @@
   >
     <a [routerLink]="cat.link" class="category-link">
       <div class="img-container">
-        <img [src]="cat.imageUrl" [alt]="cat.label" />
+        <img [src]="cat.imageUrl" [alt]="cat.name" />
       </div>
 
       <!-- Label + Arrow in one row -->
       <div class="label-container">
-        <span class="label">{{ cat.label }}</span>
+        <span class="label">{{ cat.name }}</span>
         @if(cat.subcategories?.length){
         <span class="arrow" [class.open]="cat.showDropdown">▼</span>
         }
@@ -26,18 +26,21 @@
         @for(sub of cat.subcategories; track sub.id){
         <li>
           <a [routerLink]="sub.link"
-            >{{ sub.label }}
-            @if(sub.children.length){
+            >{{ sub.name }}
+            @if(sub.subcategories.length){
             <span class="right-arrow">›</span>
             }
           </a>
 
-          @if (sub.children.length ) {
+          @if (sub.subcategories.length ) {
           <div class="dropdown-right">
             <ul>
-              @for (child of sub.children; track child.id) {
               <li>
-                <a [routerLink]="child.link">{{ child.label }}</a>
+                <a>All</a>
+              </li>
+              @for (child of sub.subcategories; track child.id) {
+              <li>
+                <a [routerLink]="child.link">{{ child.name }}</a>
               </li>
               }
             </ul>

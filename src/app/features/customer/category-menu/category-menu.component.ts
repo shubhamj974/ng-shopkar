@@ -1,18 +1,15 @@
-import { Component } from '@angular/core';
-import {
-  CATEGORY_MENU,
-  CategoryItem,
-} from '../../../core/constant/category-menu';
+import { JsonPipe } from '@angular/common';
+import { Component, Input } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-category-menu',
   standalone: true,
-  imports: [RouterLink],
+  imports: [RouterLink,JsonPipe],
   templateUrl: './category-menu.component.html',
   styleUrl: './category-menu.component.scss',
 })
 export class CategoryMenuComponent {
-  public categories: CategoryItem[] = CATEGORY_MENU;
+  @Input() cate_menu : Array<any> = []
   activeSubcategory: any = null;
 }
