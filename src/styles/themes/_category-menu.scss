@@ -59,6 +59,7 @@
 
   /* First-level dropdown */
   .dropdown {
+    height: 500px;
     position: absolute;
     top: 100%;
     left: 0;
@@ -74,7 +75,6 @@
       list-style: none;
 
       li {
-        position: relative; /* Needed for right-side menu positioning */
         padding: 8px;
         font-size: 12px;
         text-align: left;
@@ -87,18 +87,21 @@
         a {
           color: #212121;
           text-decoration: none;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
         }
 
-        /* Second-level dropdown (right side) */
         .dropdown-right {
+          height: 500px;
           position: absolute;
           top: 0;
           left: 100%;
           background: #fff;
           border: 1px solid #ddd;
-          min-width: 200px;
+          min-width: 250px;
           z-index: 11;
-          display: none; /* Show on hover */
+          display: none;
           box-shadow: 2px 0 8px rgba(0, 0, 0, 0.08);
 
           ul {
@@ -109,27 +112,25 @@
             li {
               padding: 8px;
               font-size: 12px;
-              text-align: left;
+
               &:hover {
-                font-weight: 800;
+                font-weight: 500;
                 background-color: rgb(234, 245, 245);
               }
             }
           }
         }
 
-        /* Show on hover */
-        &:hover > .dropdown-right {
+        &:hover>.dropdown-right {
           display: block;
         }
       }
     }
+
     .right-arrow {
-      float: right;
-      font-size: 16px; /* Medium size */
+      font-size: 16px;
       font-weight: 500;
       color: #000;
-      font-weight: 500;
       transition: transform 0.2s ease, color 0.2s ease;
     }
   }
