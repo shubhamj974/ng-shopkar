@@ -24,7 +24,7 @@
     <div class="dropdown sync-height">
       <ul>
         @for(sub of cat.subcategories; track sub.id){
-        <li>
+        <li (mouseenter)="syncDropdownHeights()">
           <a [routerLink]="sub.link"
             >{{ sub.name }}
             @if(sub.subcategories.length){
@@ -35,9 +35,6 @@
           @if (sub.subcategories.length ) {
           <div class="dropdown-right sync-height">
             <ul>
-              <li>
-                <a>All</a>
-              </li>
               @for (child of sub.subcategories; track child.id) {
               <li>
                 <a [routerLink]="child.link">{{ child.name }}</a>
