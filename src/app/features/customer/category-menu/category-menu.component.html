@@ -2,7 +2,7 @@
   @for(cat of cate_menu; track cat.id){
   <div
     class="category-card"
-    (mouseenter)="cat.showDropdown = true"
+    (mouseenter)="cat.showDropdown = true; syncDropdownHeights()"
     (mouseleave)="cat.showDropdown = false"
   >
     <a [routerLink]="cat.link" class="category-link">
@@ -21,7 +21,7 @@
 
     <!-- Dropdown -->
     @if(cat.subcategories?.length && cat.showDropdown){
-    <div class="dropdown">
+    <div class="dropdown sync-height">
       <ul>
         @for(sub of cat.subcategories; track sub.id){
         <li>
@@ -33,7 +33,7 @@
           </a>
 
           @if (sub.subcategories.length ) {
-          <div class="dropdown-right">
+          <div class="dropdown-right sync-height">
             <ul>
               <li>
                 <a>All</a>

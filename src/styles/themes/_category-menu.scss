@@ -59,7 +59,6 @@
 
   /* First-level dropdown */
   .dropdown {
-    height: 500px;
     position: absolute;
     top: 100%;
     left: 0;
@@ -93,7 +92,6 @@
         }
 
         .dropdown-right {
-          height: 500px;
           position: absolute;
           top: 0;
           left: 100%;
@@ -112,7 +110,13 @@
             li {
               padding: 8px;
               font-size: 12px;
-
+              a {
+                  color: #212121;
+                  text-decoration: none;
+                  display: flex;
+                  justify-content: space-between;
+                  align-items: center;
+                }
               &:hover {
                 font-weight: 500;
                 background-color: rgb(234, 245, 245);
