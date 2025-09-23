@@ -22,29 +22,21 @@
             </ul>
         </section>
 
+        @for(filter of filterOptions; track filter.id ){
         <section class="filter-card-brand">
-            <div class="filter-card-brand-header">Brand</div>
+            <div class="filter-card-brand-header">{{filter.title}}</div>
             <ul class="filter-card-brand-list">
+                @for(sec of filter.options; track sec.id){
                 <li class="filter-card-brand-list-item">
-                    <input type="checkbox" id="brand1" class="brand-checkbox" />
-                    <label for="brand1">realme</label>
+                    <input type="checkbox" [id]="sec.name + '-' + sec.id" class="brand-checkbox" />
+                    <label [for]="sec.name">{{sec.name}}</label>
                 </li>
-                <li class="filter-card-brand-list-item">
-                    <input type="checkbox" id="brand2" class="brand-checkbox" />
-                    <label for="brand2">Samsung</label>
-                </li>
-                <li class="filter-card-brand-list-item">
-                    <input type="checkbox" id="brand3" class="brand-checkbox" />
-                    <label for="brand3">Apple</label>
-                </li>
-                <li class="filter-card-brand-list-item">
-                    <input type="checkbox" id="brand4" class="brand-checkbox" />
-                    <label for="brand4">POCO</label>
-                </li>
-            </ul>
 
-            <div class="filter-card-brand-more">145 more</div>
+                }
+            </ul>
+            <!-- <div class="filter-card-brand-more">145 more</div> -->
         </section>
+        }
     </div>
 
     <!-- Product List -->
