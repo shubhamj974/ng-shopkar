@@ -3,11 +3,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { ProductCategoryMenuComponent } from '../product-category-menu/product-category-menu.component';
 import { CommonModule, DecimalPipe, JsonPipe } from '@angular/common';
+import { FilterComponent } from '../filter/filter.component';
 
 @Component({
   selector: 'app-product-list',
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, RouterModule, ProductCategoryMenuComponent, DecimalPipe],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, RouterModule, ProductCategoryMenuComponent, DecimalPipe, FilterComponent],
   templateUrl: './product-list.component.html',
   styleUrl: './product-list.component.scss'
 })
@@ -168,6 +169,62 @@ export class ProductListComponent {
         { id: 1, name: 'Big Storage', checked: false },
         { id: 2, name: 'Higher Performence', checked: false },
         { id: 3, name: 'Long-Lasting Battery', checked: false },
+      ],
+    },
+    {
+      id: 10,
+      title: 'OPERATING SYSTEM',
+      options: [
+        { id: 1, name: 'Andriod', checked: false },
+      ],
+    },
+    {
+      id: 11,
+      title: 'SIM TYPE',
+      options: [
+        { id: 1, name: 'Dual Sim(Nano + eSIM)', checked: false },
+      ],
+    },
+    {
+      id: 12,
+      title: 'SCREEN SIZE',
+      options: [
+        { id: 1, name: '6 - 6.3 inch', checked: false },
+      ],
+    },
+    {
+      id: 13,
+      title: 'CUSTOMER RATING',
+      options: [
+        { id: 1, name: '4★ & above', checked: false },
+        { id: 1, name: '3★ & above', checked: false },
+      ],
+    },
+    {
+      id: 14,
+      title: 'PRIMARY CAMERA',
+      options: [
+
+        { id: 1, name: '48 - 63.9 MP', checked: false },
+      ],
+    },
+    {
+      id: 15,
+      title: 'DISCOUNT',
+      options: [
+        { id: 1, name: '50% or more', checked: false },
+        { id: 2, name: '40% or more', checked: false },
+        { id: 3, name: '30% or more', checked: false },
+        { id: 4, name: '20% or more', checked: false },
+        { id: 5, name: '10% or more', checked: false },
+      ],
+    },
+    {
+      id: 14,
+      title: 'SECONDARY CAMERA',
+      options: [
+        
+        { id: 1, name: '8 - 11.9 MP', checked: false },
       ],
     },
   ];

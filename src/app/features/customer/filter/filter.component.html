@@ -1,0 +1,46 @@
+<div class="filter-card">
+        <p class="filter-heading">Filters</p>
+
+        <section class="filter-categories">
+            <div class="filter-categories-header">CATEGORIES</div>
+
+            <ul class="filter-categories-list">
+                @for(category of categories; track category.id){
+                <li class="filter-categories-list-item"
+                    [ngClass]="{ 'filter-categories-list-item--dark': category.highlight }">
+                    <span class="arrow">
+                        <svg width="10" height="10" viewBox="0 0 16 27" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M16 23.207L6.11 13.161 16 3.093 12.955 0 0 13.161l12.955 13.161z"></path>
+                        </svg>
+                    </span>
+                    <a class="link" [href]="category.link">{{ category.name }}</a>
+                </li>
+                }
+            </ul>
+        </section>
+
+        @for(filter of filterOptions; track filter.id ){
+        <section class="filter-card-brand">
+            <div class="filter-card-brand-header" (click)="toggleFilter(filter)">{{filter.title}}
+                <span class="toggle-icon" [class.expanded]="filter.expanded">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" width="12" height="12">
+                        <path d="M352 160c12.9 0 24.6 7.8 29.6 19.8s2.2 25.7-6.9 34.9l-160 160c-12.5 12.5-32.8 12.5-45.3 0l-160-160c-9.2-9.2-11.9-22.9-6.9-34.9S19.1 160 32 160l320 0z"/>
+                    </svg>
+                </span>
+            </div>
+
+            @if(filter.expanded){
+                <ul class="filter-card-brand-list">
+                    @for(sec of filter.options; track sec.id){
+                    <li class="filter-card-brand-list-item">
+                        <input type="checkbox" [id]="sec.name + '-' + sec.id" class="brand-checkbox" />
+                        <label [for]="sec.name">{{sec.name}}</label>
+                    </li>
+    
+                    }
+                </ul>
+                <!-- <div class="filter-card-brand-more">145 more</div> -->
+            }
+        </section>
+        }
+    </div>
