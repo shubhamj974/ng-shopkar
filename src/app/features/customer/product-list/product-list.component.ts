@@ -153,22 +153,23 @@ export class ProductListComponent {
   private customerSerivce = inject(CustomerService)
   ngOnInit() {
     this.init()
-    // const categoryMap = new Map();
-    // this.products.forEach(product => {
-    //   product.categories.forEach(cat => {
-    //     if (!categoryMap.has(cat.id)) {
-    //       categoryMap.set(cat.id, cat);
-    //     }
-    //   });
-    // });
-
-    // this.categories = Array.from(categoryMap.values());
   }
 
   init(){
     this.customerSerivce.getProduct().subscribe(res => {
       console.log('products',res);
       this.products = res
+      const categoryMap = new Map();
+    this.products.forEach((product: any) => {
+      if (product.category) {
+        if (!categoryMap.has(product.category.id)) {
+          categoryMap.set(product.category.id, product.category);
+        }
+      }
+    });
+
+    this.categories = Array.from(categoryMap.values());
+    console.log('categories', this.categories);
     })
   }
 }
