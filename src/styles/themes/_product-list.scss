@@ -246,6 +246,7 @@
 
             .product-details {
                 width: 600px;
+
                 .product-name {
                     font-size: $spacing-md;
                     font-weight: 600;
@@ -353,4 +354,31 @@
             }
         }
     }
+}
+
+.looking-for {
+    display: flex;
+    align-items: center;
+    gap: $space-10;
+    background: $white-clor;
+    padding: $space-16;
+
+
+    .para {
+        font-weight: $font-weight-500;
+    }
+
+    .yes,
+    .no {
+        height: 30px;
+        width: 70px;
+        border: 1px solid #d8d8d8;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        cursor: pointer;
+        user-select: none;
+    }
+
 }

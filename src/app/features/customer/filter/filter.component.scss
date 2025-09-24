@@ -1,0 +1,45 @@
+.buying-guide {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+
+  .guide-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #2874f0; // Flipkart blue background
+    color: #fff;
+    text-decoration: none;
+    padding: 16px;
+    border-radius: 8px;
+    position: relative;
+    overflow: hidden;
+
+    .guide-text {
+      font-size: 16px;
+      font-weight: 500;
+      margin-bottom: 8px;
+    }
+
+    .guide-subtitle {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 14px;
+      font-weight: 600;
+
+      .guide-icon {
+        fill: #fff;
+      }
+    }
+
+    .guide-image {
+      margin-top: 12px;
+      max-width: 100%;
+      height: auto;
+    }
+
+    
+  }
+}
