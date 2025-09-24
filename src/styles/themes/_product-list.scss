@@ -245,13 +245,12 @@
             }
 
             .product-details {
+                width: 600px;
                 .product-name {
                     font-size: $spacing-md;
                     font-weight: 600;
                     margin: 0;
                 }
-
-
 
                 .rating-box {
                     display: flex;
@@ -305,6 +304,10 @@
                     color: #d7d7d7;
                 }
 
+
+            }
+
+            .price-details {
                 .pricing {
                     font-size: 25px;
                     font-weight: 500;

@@ -4,7 +4,7 @@ import { homeDeals } from '../../../core/constant/home-deals';
 import { BestDealsComponent } from '../best-deals/best-deals.component';
 import { CategoryMenuComponent } from '../category-menu/category-menu.component';
 import { SaleBannerComponent } from '../sale-banner/sale-banner.component';
-import { CustomerService } from '../customer.service';
+import { CustomerService } from '../service/customer.service';
 
 @Component({
   selector: 'app-home',

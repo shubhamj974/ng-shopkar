@@ -11,8 +11,8 @@
                 <div class="product-container">
                     <!-- Left: Product Image -->
                     <div class="product-image">
-                        @if(product.badge){
-                        <div class="badge">{{ product.badge }}</div>
+                        @if(product.isBestSeller){
+                        <div class="badge">Bestseller</div>
                         }
                         <img [src]="product.imageUrl" [alt]="product.name" />
                         <div class="compare-box">
@@ -29,37 +29,38 @@
                         <h3 class="product-name">{{ product.name }}</h3>
                         <div class="rating-box">
                             <span class="rating-value">
-                                {{ product.rating }}
+                                {{ product.averageRating }}
                                 <span class="star">★</span>
                             </span>
                             <span class="rating-count">
-                                {{ product.ratings | number }} Ratings
+                                {{ product.ratingsCount | number }} Ratings
                                 <span class="and">&amp;</span>
-                                {{ product.reviews | number }} Reviews
+                                {{ product.reviewsCount | number }} Reviews
                             </span>
                         </div>
 
 
                         <ul class="specs">
-                            @for (spec of product.specs; track spec) {
+                            @for (spec of product.spec; track spec) {
                             <li>{{ spec }}</li>
                             }
                         </ul>
 
 
                     </div>
-                    <div class="product-details">
+                     <!-- Right: Price Details -->
+                    <div class="price-details">
                         <div class="pricing">
                             <span class="price">₹{{ product.price | number}}</span>
 
                         </div>
-                        @if(product.originalPrice){
-                        <span class="original-price">₹{{ product.originalPrice | number}}</span>
+                        @if(product.mrp){
+                        <span class="original-price">₹{{ product.mrp | number}}</span>
                         }
-                        @if(product.discount){
-                        <span class="discount">{{ product.discount }}</span>
+                        @if(product.discountPercent){
+                        <span class="discount">{{ product.discountPercent }}% off</span>
                         }
-                        @if(product.stock < 10){ <div class="stock">Only few left
+                        @if(product.stock < 10) { <div class="stock">Only few left
                     </div>
                     }
                     @if(product.exchangeOffer){
@@ -67,7 +68,7 @@
                             number}}</span> Off on Exchange</div>
                     }
                     @if(product.bankOffer){
-                    <div class="bank-offer">{{ product.bankOffer }}</div>
+                    <div class="bank-offer">Bank Offer</div>
                     }
                 </div>
         </div>

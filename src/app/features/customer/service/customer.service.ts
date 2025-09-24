@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { environment } from '../../../environments/environment';
 import { map } from 'rxjs';
+import { environment } from '../../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +17,16 @@ export class CustomerService {
       map((res: any) => {
         if (res.status) {
           return res.data
+        }
+      })
+    )
+  }
+
+  getProduct() {
+    return this.http.get(`${this.url}/products`).pipe(
+      map((res: any) => {
+        if (res.status) {
+          return res.data.rows
         }
       })
     )
