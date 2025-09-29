@@ -1,0 +1,28 @@
+.back-to-top {
+  position: fixed;
+  top: 50px; // 100px from top
+  left: 50%; // center horizontally
+  transform: translateX(-50%); // truly center
+  background-color: #007bff;
+  color: white;
+  display: flex;
+  align-items: center;
+  padding: 8px 12px;
+  border-radius: 30px;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  z-index: 11000;
+  transition: opacity 0.3s, transform 0.3s;
+
+  svg {
+    margin-right: 8px;
+  }
+
+  span {
+    font-weight: 500;
+  }
+
+  &:hover {
+    background-color: #0056b3;
+  }
+}

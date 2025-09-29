@@ -7,7 +7,7 @@
     <div class="product-list">
         @for (product of products; track product.id) {
         <div class="product-card">
-            <a [routerLink]="['/product', product.id]" target="_blank">
+            <a [routerLink]="['/customer/product', product.id]">
                 <div class="product-container">
                     <!-- Left: Product Image -->
                     <div class="product-image">

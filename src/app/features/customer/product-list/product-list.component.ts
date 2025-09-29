@@ -5,6 +5,7 @@ import { ProductCategoryMenuComponent } from '../product-category-menu/product-c
 import { CommonModule, DecimalPipe, JsonPipe } from '@angular/common';
 import { FilterComponent } from '../filter/filter.component';
 import { CustomerService } from '../service/customer.service';
+import { BackToTopComponent } from '../back-to-top/back-to-top.component';
 
 @Component({
   selector: 'app-product-list',
