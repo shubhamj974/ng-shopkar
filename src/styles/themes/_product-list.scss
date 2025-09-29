@@ -58,7 +58,7 @@
                         cursor: pointer;
 
                         &:hover {
-                            color: #2874f0; // Flipkart blue
+                            color: $blue-color;
                         }
                     }
                 }
@@ -66,7 +66,7 @@
 
             &-more {
                 font-size: 13px;
-                color: #2874f0;
+                color: $blue-color;
                 cursor: pointer;
                 font-weight: $font-weight-500;
                 margin-top: $space-6;
@@ -125,7 +125,7 @@
                     cursor: pointer;
 
                     &:hover {
-                        color: #2874f0; // Flipkart blue
+                        color: $blue-color;
                     }
                 }
 
@@ -209,8 +209,8 @@
                         position: relative;
 
                         &:checked {
-                            background-color: #2874f0;
-                            border-color: #2874f0;
+                            background-color: $blue-color;
+                            border-color: $blue-color;
                         }
 
                         &:checked::after {
@@ -356,29 +356,143 @@
     }
 }
 
+
+//feedback
 .looking-for {
     display: flex;
-    align-items: center;
-    gap: $space-10;
+    flex-direction: column;
+    gap: 12px;
     background: $white-clor;
     padding: $space-16;
 
 
-    .para {
-        font-weight: $font-weight-500;
+    .bottom-line {
+        border-bottom: 1px solid #e9e3e3
     }
 
-    .yes,
-    .no {
-        height: 30px;
-        width: 70px;
-        border: 1px solid #d8d8d8;
+    .question-row {
         display: flex;
         align-items: center;
-        justify-content: center;
-        text-align: center;
-        cursor: pointer;
-        user-select: none;
+        gap: 10px; // small space only
+
+        .para {
+            font-weight: $font-weight-500;
+            white-space: nowrap;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 10px;
+
+            .yes,
+            .no {
+                height: 30px;
+                width: 70px;
+                border: 1px solid #d8d8d8;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+                user-select: none;
+            }
+        }
+
+        .buttons .yes.active,
+        .no.active {
+            background-color: $light-blue;
+            color: $blue-color;
+            border: 1px solid $blue-color;
+        }
     }
 
+    .feedback-yes {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+
+        .textarea-heading {
+            font-size: $space-13;
+            color: #878787;
+        }
+
+        .textarea {
+            flex: 1;
+            padding: 8px;
+            border: 1px solid $search-color;
+
+            &:focus {
+                border: 1px solid $blue-color;
+            }
+        }
+
+
+        button {
+            font-size: $space-12;
+            font-weight: $font-weight-500;
+            padding: 15px 60px;
+            background-color: $blue-color;
+            color: $white-clor;
+            border: none;
+            cursor: pointer;
+            display: inline-block;
+            border-radius: 4px;
+            align-self: flex-start;
+        }
+    }
+
+    .feedback-no {
+        width: 311px;
+        margin-top: 10px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+
+        .option-heading {
+
+            font-size: $space-13;
+            color: #878787;
+        }
+
+
+        .select-wrapper {
+            position: relative;
+            width: 100%;
+
+            select {
+                width: 100%;
+                padding: 8px 12px 12px 0;
+                border: none;
+                border-bottom: 1px solid #ccc; // base underline
+                font-size: 13px;
+                color: #333;
+                appearance: none;
+                cursor: pointer;
+                outline: none;
+                background: transparent;
+                font-weight: $font-weight-500;
+            }
+
+            &::after {
+                content: '';
+                position: absolute;
+                left: 50%;
+                bottom: 0;
+                width: 0;
+                height: 2px;
+                background-color: $blue-color;
+                transform: translateX(-50%);
+                transition: width 0.3s ease;
+            }
+
+            &:hover::after,
+            &:focus-within::after {
+                width: 100%;
+            }
+
+            &.open::after {
+                width: 0;
+            }
+        }
+
+    }
 }

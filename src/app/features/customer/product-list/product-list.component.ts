@@ -14,7 +14,7 @@ import { CustomerService } from '../service/customer.service';
   styleUrl: './product-list.component.scss'
 })
 export class ProductListComponent {
-  public products : Array<any>= [];
+  public products: Array<any> = [];
   public categories: Array<any> = [];
   public filterOptions = [
     {
@@ -144,33 +144,47 @@ export class ProductListComponent {
       id: 14,
       title: 'SECONDARY CAMERA',
       options: [
-        
+
         { id: 1, name: '8 - 11.9 MP', checked: false },
       ],
     },
   ];
 
+  public selected: 'yes' | 'no' | null = null;
+  public reason: string = '';
+  public isOpen = false; // 👈 declare it here
   private customerSerivce = inject(CustomerService)
   ngOnInit() {
     this.init()
   }
 
-  init(){
+  init() {
     this.customerSerivce.getProduct().subscribe(res => {
-      console.log('products',res);
+      console.log('products', res);
       this.products = res
       const categoryMap = new Map();
-    this.products.forEach((product: any) => {
-      if (product.category) {
-        if (!categoryMap.has(product.category.id)) {
-          categoryMap.set(product.category.id, product.category);
+      this.products.forEach((product: any) => {
+        if (product.category) {
+          if (!categoryMap.has(product.category.id)) {
+            categoryMap.set(product.category.id, product.category);
+          }
         }
-      }
-    });
+      });
 
-    this.categories = Array.from(categoryMap.values());
-    console.log('categories', this.categories);
+      this.categories = Array.from(categoryMap.values());
+      console.log('categories', this.categories);
     })
+  }
+
+
+  selectFeedback(choice: 'yes' | 'no') {
+    this.selected = choice;
+    console.log(this.selected);
+    
+  }
+
+  submitFeedback() {
+    
   }
 }
 

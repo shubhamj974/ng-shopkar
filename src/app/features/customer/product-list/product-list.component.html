@@ -76,15 +76,54 @@
     </div>
     }
 
-    
+
 
     <div class="looking-for">
-        <div class="para">
-            Did you find what you were looking for?
+        <div class="question-row">
+            <span class="para">
+                Did you find what you were looking for?
+            </span>
+            <div class="buttons">
+                <div (click)="selectFeedback('yes')" [class.active]="selected === 'yes'" class="yes">Yes</div>
+                <div (click)="selectFeedback('no')" [class.active]="selected === 'no'" class="no">No</div>
+            </div>
         </div>
-        <div class="yes">Yes</div>
-        <div class="no">No</div>
+        @if(selected){
+            <div class="bottom-line"></div>
+        }
+        <div class="feedback-no" *ngIf="selected === 'no'">
+            <div class="option-heading">
+                Choose an option that best describes your problem.
+            </div>
+            <div class="select-wrapper" [class.open]="isOpen">
+                <select class="select-bl" required (focus)="isOpen = true" (blur)="isOpen = false">
+                    <option disabled selected value="">Please select an issue</option>
+                    <option value="5">Above my budget</option>
+                    <option value="2">Irrelevant results</option>
+                    <option value="11">Cannot be delivered at my pincode</option>
+                    <option value="12">Not enough variety or choice</option>
+                    <option value="3">Sort/Filter option isn't helpful</option>
+                    <option value="4">Out of stock</option>
+                    <option value="8">Not available on Flipkart</option>
+                </select>
+            </div>
+        </div>
+
+        @if(selected){
+        <div class="feedback-yes">
+            @if(selected === 'yes'){
+            <div class="textarea-heading">We’d love to hear from you about our search experience. Your feedback will
+                help us improve Flipkart for everyone.</div>
+            }@else{
+                <div class="textarea-heading">
+                    Please share any more details around the issue. Your feedback will help us improve Flipkart for everyone.
+                </div>
+            }
+            <textarea class="textarea" rows="8" placeholder=""></textarea>
+            <button (click)="submitFeedback()">Submit</button>
+        </div>
+        }
     </div>
-</div>
+
 
 </div>
