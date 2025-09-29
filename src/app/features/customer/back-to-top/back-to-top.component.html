@@ -1,4 +1,4 @@
-<div class="back-to-top" *ngIf="showButton" (click)="scrollToTop()">
+<div class="back-to-top" [class.show]="showButton"  (click)="scrollToTop()">
     <svg class="back-to-top-icon" width="12" height="12" viewBox="0 0 16 27" xmlns="http://www.w3.org/2000/svg">
         <path d="M16 23.207L6.11 13.161 16 3.093 12.955 0 0 13.161l12.955 13.161z" fill="#2874f0"></path>
     </svg>
