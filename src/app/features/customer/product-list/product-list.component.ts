@@ -10,7 +10,7 @@ import { BackToTopComponent } from '../back-to-top/back-to-top.component';
 @Component({
   selector: 'app-product-list',
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, RouterModule, ProductCategoryMenuComponent, DecimalPipe, FilterComponent],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, RouterModule, ProductCategoryMenuComponent, DecimalPipe, FilterComponent,BackToTopComponent],
   templateUrl: './product-list.component.html',
   styleUrl: './product-list.component.scss'
 })

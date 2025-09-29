@@ -1,0 +1,32 @@
+.back-to-top {
+    position: fixed;
+    top: 90px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: $white-clor;
+    color: $blue-color;
+    display: flex;
+    align-items: center;
+    padding: 10px 12px;
+    border-radius: 3px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    z-index: 1001;
+    transition: opacity 0.3s, transform 0.3s;
+
+
+    &-icon {
+        fill: #2874f0;
+        transform: rotate(90deg);
+        transition: transform 0.3s ease;
+    }
+
+    svg {
+        margin-right: 8px;
+    }
+
+    span {
+        font-weight: 500;
+    }
+     
+}
