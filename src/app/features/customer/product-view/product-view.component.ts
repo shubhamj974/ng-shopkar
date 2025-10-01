@@ -26,7 +26,10 @@ export class ProductViewComponent {
   public activeIndex: number = 0;
   public mainImage: string = this.images[0];
   public activeImg: any;
-
+  public zoomVisible = false;
+  public backgroundPosition = '0% 0%';
+  public zoomWidth = 1200;
+  public zoomHeight = 1200;
   ngOnInit() {
     this.activeImg = this.activeIndex
 
@@ -39,8 +42,8 @@ export class ProductViewComponent {
 
   }
 
-  getMainImageUrl(url: string): string {
-    return url.replace(/\/128\/128\//, '/416/416/');
+  getMainImageUrl(url: string,size: number = 385): string {
+    return url.replace(/\/128\/128\//, `/${size}/${size}/`);
   }
 
   scrollThumbnails(direction: number) {
@@ -51,6 +54,27 @@ export class ProductViewComponent {
       top: direction * scrollAmount,
       behavior: "smooth"
     });
+  }
+
+  zoomImage(event: MouseEvent) {
+    console.log(event);
+    
+    this.zoomVisible = true;
+
+    const element = event.currentTarget as HTMLElement;
+    const rect = element.getBoundingClientRect();
+
+    const x = event.clientX - rect.left;
+    const y = event.clientY - rect.top;
+
+    const xPercent = (x / rect.width) * 100;
+    const yPercent = (y / rect.height) * 100;
+
+    this.backgroundPosition = `${xPercent}% ${yPercent}%`;
+  }
+
+  hideZoom() {
+    this.zoomVisible = false;
   }
 
 

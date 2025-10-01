@@ -1,37 +1,58 @@
+<!-- category -->
 <app-product-category-menu></app-product-category-menu>
 <div class="product-page">
-  <div class="left-column">
-    <div class="thumbnail-wrapper">
-      <div class="arrow up" (click)="scrollThumbnails(-1)">
-        <svg width="8" height="15" viewBox="0 0 16 27" xmlns="http://www.w3.org/2000/svg" class="ZpyMwK">
-          <path d="M16 23.207L6.11 13.161 16 3.093 12.955 0 0 13.161l12.955 13.161z" fill="#000" class=""></path>
-        </svg>
+  <!-- left -->
+  <div class="main-lf-shu">
+    <div class="left-column">
+      <div class="thumbnail-wrapper">
+        <div class="arrow up" (click)="scrollThumbnails(-1)">
+          <svg width="8" height="15" viewBox="0 0 16 27" xmlns="http://www.w3.org/2000/svg" class="ZpyMwK">
+            <path d="M16 23.207L6.11 13.161 16 3.093 12.955 0 0 13.161l12.955 13.161z" fill="#000" class=""></path>
+          </svg>
+        </div>
+
+        <ul class="thumbnails" id="thumbnailList">
+          @for(img of images;track img){
+          <li [class.active]="$index === activeIndex" (mouseover)="hoverThumbnail($index)">
+            <img [src]="img" alt="">
+          </li>
+          }
+        </ul>
+
+        <div class="arrow down" (click)="scrollThumbnails(1)">
+          <svg width="8" height="15" viewBox="0 0 16 27" xmlns="http://www.w3.org/2000/svg" class="ZpyMwK">
+            <path d="M16 23.207L6.11 13.161 16 3.093 12.955 0 0 13.161l12.955 13.161z" fill="#000" class=""></path>
+          </svg>
+        </div>
       </div>
 
-      <ul class="thumbnails" id="thumbnailList">
-        @for(img of images;track img){
-        <li [class.active]="$index === activeIndex" (mouseover)="hoverThumbnail($index)">
-          <img [src]="img" alt="">
-        </li>
-        }
-      </ul>
-
-      <div class="arrow down" (click)="scrollThumbnails(1)">
-        <svg width="8" height="15" viewBox="0 0 16 27" xmlns="http://www.w3.org/2000/svg" class="ZpyMwK">
-          <path d="M16 23.207L6.11 13.161 16 3.093 12.955 0 0 13.161l12.955 13.161z" fill="#000" class=""></path>
-        </svg>
+      <div class="main-image" (mousemove)="zoomImage($event)" (mouseleave)="hideZoom()">
+        <img id="mainImg" [src]="getMainImageUrl(mainImage)" alt="Product Image" class="image">
       </div>
+
+      <!-- action buttons -->
     </div>
-
-    <div class="main-image" (mousemove)="zoomImage($event)" (mouseleave)="hideZoom()">>
-      <img id="mainImg" [src]="getMainImageUrl(mainImage)" alt="Product Image">
+    <div class="product-actions">
+      <button class="add-to-cart">
+        <svg width="16" height="16" viewBox="0 0 16 15" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M15.32 2.405H4.887C3 2.405 2.46.805 2.46.805L2.257.21C2.208.085 2.083 0 1.946 0H.336C.1 0-.064.24.024.46l.644 1.945L3.11 9.767c.047.137.175.23.32.23h8.418l-.493 1.958H3.768l.002.003c-.017 0-.033-.003-.05-.003-1.06 0-1.92.86-1.92 1.92s.86 1.92 1.92 1.92c.99 0 1.805-.75 1.91-1.712l5.55.076c.12.922.91 1.636 1.867 1.636 1.04 0 1.885-.844 1.885-1.885 0-.866-.584-1.593-1.38-1.814l2.423-8.832c.12-.433-.206-.86-.655-.86"
+            fill="#fff"></path>
+        </svg>
+        Add to Cart
+      </button>
+      <button class="buy-now">Buy Now</button>
     </div>
   </div>
 
-
+  <!-- right -->
   <div class="right-column">
-    <div class="zoom-box" *ngIf="zoomVisible"
-      [ngStyle]="{'background-image': 'url(' + getMainImageUrl(mainImage) + ')', 'background-position': backgroundPosition}">
+    <div class="zoom-box" *ngIf="true" [ngStyle]="{
+      'background-image': 'url(' + getMainImageUrl(mainImage, zoomWidth) + ')',
+      'background-position': backgroundPosition,
+       
+       
+      }">
     </div>
     <h1>Samsung Galaxy S24 FE 5G</h1>
     <p>128 GB, Blue Color</p>
@@ -39,4 +60,6 @@
     <p>More details...</p>
     <p>More details...</p>
   </div>
+
+
 </div>
