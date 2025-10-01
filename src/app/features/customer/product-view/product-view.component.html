@@ -1,35 +1,59 @@
 <app-product-category-menu></app-product-category-menu>
 <div class="product-page">
   <div class="left-column">
-  <div class="thumbnail-wrapper">
-    <div class="arrow up" onclick="scrollThumbnails(-1)">
-      ▲
+    <div class="thumbnail-wrapper">
+      <div class="arrow up" onclick="scrollThumbnails(-1)">
+        <svg width="8" height="15" viewBox="0 0 16 27" xmlns="http://www.w3.org/2000/svg" class="ZpyMwK">
+          <path d="M16 23.207L6.11 13.161 16 3.093 12.955 0 0 13.161l12.955 13.161z" fill="#000" class=""></path>
+        </svg>
+      </div>
+
+      <ul class="thumbnails" id="thumbnailList">
+        <li><img
+            src="https://rukminim2.flixcart.com/image/128/128/xif0q/mobile/4/p/o/-original-imahfw4aasyhherc.jpeg?q=70&crop=false"
+            alt=""></li>
+        <li><img
+            src="https://rukminim2.flixcart.com/image/128/128/xif0q/mobile/1/8/g/-original-imahfw4awpphaa8g.jpeg?q=70&crop=false"
+            alt=""></li>
+        <li><img
+            src="https://rukminim2.flixcart.com/image/128/128/xif0q/mobile/n/t/4/-original-imahfw4asstjjqgf.jpeg?q=70&crop=false"
+            alt=""></li>
+        <li><img
+            src="https://rukminim2.flixcart.com/image/128/128/xif0q/mobile/s/1/j/-original-imahfw4apfx7ncfz.jpeg?q=70&crop=false"
+            alt=""></li>
+        <li><img
+            src="https://rukminim2.flixcart.com/image/128/128/xif0q/mobile/v/o/s/-original-imahfw4a8qdtfgr3.jpeg?q=70&crop=false"
+            alt=""></li>
+        <li><img
+            src="https://rukminim2.flixcart.com/image/128/128/xif0q/mobile/w/m/5/-original-imahfw4ahyuj7mpd.jpeg?q=70&crop=false"
+            alt=""></li>
+        <li><img
+            src="https://rukminim2.flixcart.com/image/128/128/xif0q/mobile/a/h/z/-original-imahfw4achf8wgxd.jpeg?q=70&crop=false"
+            alt=""></li>
+        <li><img
+            src="https://rukminim2.flixcart.com/image/128/128/xif0q/mobile/i/0/a/-original-imahfw4an4tz2pgm.jpeg?q=70&crop=false"
+            alt=""></li>
+        <li><img
+            src="https://rukminim2.flixcart.com/image/128/128/xif0q/mobile/h/s/u/-original-imahfw4a77zhfewy.jpeg?q=70&crop=false"
+            alt=""></li>
+        <li><img
+            src="https://rukminim2.flixcart.com/image/128/128/xif0q/mobile/n/m/3/-original-imahfw4ahbhymx8j.jpeg?q=70&crop=false"
+            alt=""></li>
+      </ul>
+
+      <div class="arrow down" onclick="scrollThumbnails(1)">
+        <svg width="8" height="15" viewBox="0 0 16 27" xmlns="http://www.w3.org/2000/svg" class="ZpyMwK">
+          <path d="M16 23.207L6.11 13.161 16 3.093 12.955 0 0 13.161l12.955 13.161z" fill="#000" class=""></path>
+        </svg>
+      </div>
     </div>
 
-    <ul class="thumbnails" id="thumbnailList">
-      <li><img src="https://rukminim2.flixcart.com/image/128/128/xif0q/mobile/4/p/o/-original-imahfw4aasyhherc.jpeg?q=70&crop=false" alt=""></li>
-      <li><img src="https://rukminim2.flixcart.com/image/128/128/xif0q/mobile/1/8/g/-original-imahfw4awpphaa8g.jpeg?q=70&crop=false" alt=""></li>
-      <li><img src="https://rukminim2.flixcart.com/image/128/128/xif0q/mobile/n/t/4/-original-imahfw4asstjjqgf.jpeg?q=70&crop=false" alt=""></li>
-      <li><img src="https://rukminim2.flixcart.com/image/128/128/xif0q/mobile/s/1/j/-original-imahfw4apfx7ncfz.jpeg?q=70&crop=false" alt=""></li>
-      <li><img src="https://rukminim2.flixcart.com/image/128/128/xif0q/mobile/v/o/s/-original-imahfw4a8qdtfgr3.jpeg?q=70&crop=false" alt=""></li>
-      <li><img src="https://rukminim2.flixcart.com/image/128/128/xif0q/mobile/w/m/5/-original-imahfw4ahyuj7mpd.jpeg?q=70&crop=false" alt=""></li>
-      <li><img src="https://rukminim2.flixcart.com/image/128/128/xif0q/mobile/a/h/z/-original-imahfw4achf8wgxd.jpeg?q=70&crop=false" alt=""></li>
-      <li><img src="https://rukminim2.flixcart.com/image/128/128/xif0q/mobile/i/0/a/-original-imahfw4an4tz2pgm.jpeg?q=70&crop=false" alt=""></li>
-      <li><img src="https://rukminim2.flixcart.com/image/128/128/xif0q/mobile/h/s/u/-original-imahfw4a77zhfewy.jpeg?q=70&crop=false" alt=""></li>
-      <li><img src="https://rukminim2.flixcart.com/image/128/128/xif0q/mobile/n/m/3/-original-imahfw4ahbhymx8j.jpeg?q=70&crop=false" alt=""></li>
-    </ul>
-
-    <div class="arrow down" onclick="scrollThumbnails(1)">
-      ▼
+    <div class="main-image">
+      <img id="mainImg"
+        src="https://rukminim2.flixcart.com/image/416/416/xif0q/mobile/v/o/s/-original-imahfw4a8qdtfgr3.jpeg?q=70"
+        alt="Product Image">
     </div>
   </div>
-
-  <div class="main-image">
-    <img id="mainImg"
-      src="https://rukminim2.flixcart.com/image/416/416/xif0q/mobile/v/o/s/-original-imahfw4a8qdtfgr3.jpeg?q=70"
-      alt="Product Image">
-  </div>
-</div>
 
 
   <div class="right-column">
