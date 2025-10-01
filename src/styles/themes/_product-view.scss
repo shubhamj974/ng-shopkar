@@ -11,36 +11,13 @@
      //  gap: 15px;
      width: 38%;
      border: 1px solid $bg;
-    position: relative;
+
      .thumbnails {
        display: flex;
        flex-direction: column;
        list-style: none;
        padding: 0;
        margin: 0;
-
-       .arrow {
-         position: absolute;
-         transform: translateX(-50%);
-         background: white;
-         border: 1px solid #ccc;
-         border-radius: 50%;
-         padding: 4px;
-         font-size: 12px;
-         font-weight: bold;
-         cursor: pointer;
-         z-index: 5;
-         user-select: none;
-         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-
-         &.up {
-           top: 5px;
-         }
-
-         &.down {
-           bottom: 5px;
-         }
-       }
 
        li {
          cursor: pointer;
@@ -52,12 +29,10 @@
            transition: transform 0.2s, border 0.2s;
            padding: 5px;
            object-fit: contain;
-           box-sizing: border-box;
-
+          
            &:hover,
            &:active {
-             transform: scale(1.1);
-             border: 1px solid #2874f0;
+             border: 2px solid #2874f0;
            }
          }
        }
@@ -75,6 +50,7 @@
      }
    }
 
+   /* RIGHT SIDE (details) */
    .right-column {
      width: 50%;
      padding-left: 10px;
@@ -88,5 +64,42 @@
        font-size: 16px;
        margin-bottom: 10px;
      }
+   }
+ }
+
+ .thumbnail-wrapper {
+   position: relative;
+   max-height: 416px;
+   /* same as main image */
+   overflow: hidden;
+
+   .thumbnails {
+     overflow-y: auto;
+     max-height: 416px;
+     scrollbar-width: none;
+     /* hide default scrollbar */
+     -ms-overflow-style: none;
+
+     &::-webkit-scrollbar {
+       display: none;
+     }
+   }
+
+   .arrow {
+     position: absolute;
+     left: 50%;
+     transform: translateX(-50%);
+     background: white;
+     border: 1px solid #ccc;
+     padding: 4px;
+     font-size: 12px;
+     font-weight: bold;
+     cursor: pointer;
+     z-index: 5;
+     user-select: none;
+     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+     width: 60px;
+     height: 24px;
+
    }
  }
