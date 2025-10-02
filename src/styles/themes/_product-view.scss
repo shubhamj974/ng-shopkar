@@ -10,8 +10,9 @@
    .main-lf-shu {
      .left-column {
        display: flex;
-       height: 416px;
        border: 1px solid $bg;
+       height: 448px;
+       width: 510px;
 
        .thumbnails {
          display: flex;
@@ -50,11 +51,21 @@
          padding: 15px;
          cursor: crosshair;
 
-         img {
-           //  width: 416px;
-           //  height: 416px;
-           object-fit: contain;
+         .sh-cur {
+           position: relative;
+           display: inline-block;
+
+
+           .lens {
+             position: absolute;
+             width: 120px;
+             height: 120px;
+             background: rgba(200, 200, 200, 0.3);
+             border: 1px solid #aaa;
+             pointer-events: none;
+           }
          }
+
        }
      }
 

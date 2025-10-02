@@ -30,6 +30,13 @@ export class ProductViewComponent {
   public backgroundPosition = '0% 0%';
   public zoomWidth = 1200;
   public zoomHeight = 1200;
+
+  lensVisible = false;
+  lensSize = 120;
+  lensX = 0;
+  lensY = 0;
+  zoomBackground = '0% 0%';
+  zoomSize = '150%';
   ngOnInit() {
     this.activeImg = this.activeIndex
 
@@ -42,7 +49,7 @@ export class ProductViewComponent {
 
   }
 
-  getMainImageUrl(url: string,size: number = 385): string {
+  getMainImageUrl(url: string, size: number = 416): string {
     return url.replace(/\/128\/128\//, `/${size}/${size}/`);
   }
 
@@ -58,7 +65,7 @@ export class ProductViewComponent {
 
   zoomImage(event: MouseEvent) {
     console.log(event);
-    
+
     this.zoomVisible = true;
 
     const element = event.currentTarget as HTMLElement;
@@ -76,6 +83,39 @@ export class ProductViewComponent {
   hideZoom() {
     this.zoomVisible = false;
   }
+  onMouseEnter(event: MouseEvent) {
+    this.lensVisible = true;
+  }
+
+  onMouseLeave() {
+    this.lensVisible = false;
+  }
+
+  onMouseMove(event: MouseEvent) {
+    const element = event.currentTarget as HTMLElement;
+    const rect = element.getBoundingClientRect();
+
+    const lensSize = this.lensSize;
+
+    let mouseX = event.clientX - rect.left;
+    let mouseY = event.clientY - rect.top;
+
+    if (mouseX < lensSize / 2) mouseX = lensSize / 2;
+    if (mouseY < lensSize / 2) mouseY = lensSize / 2;
+    if (mouseX > rect.width - lensSize / 2) mouseX = rect.width - lensSize / 2;
+    if (mouseY > rect.height - lensSize / 2) mouseY = rect.height - lensSize / 2;
+
+    this.lensX = mouseX - lensSize / 2;
+    this.lensY = mouseY - lensSize / 2;
+
+    const xPercent = (mouseX / rect.width) * 100;
+    const yPercent = (mouseY / rect.height) * 100;
+
+    this.zoomBackground = `${xPercent}% ${yPercent}%`;
+  }
+
+
+
 
 
 }

@@ -26,8 +26,15 @@
         </div>
       </div>
 
-      <div class="main-image" (mousemove)="zoomImage($event)" (mouseleave)="hideZoom()">
-        <img id="mainImg" [src]="getMainImageUrl(mainImage)" alt="Product Image" class="image">
+      <div class="main-image" (mousemove)="zoomImage($event)" (mouseleave)="hideZoom()" (mouseleave)="onMouseLeave()"
+        (mouseenter)="onMouseEnter($event)">
+        <div class="sh-cur">
+          <img id="mainImg" (mousemove)="onMouseMove($event)" [src]="getMainImageUrl(mainImage)" alt="Product Image"
+            class="image">
+          <div class="lens" *ngIf="lensVisible" [ngStyle]="{'top.px': lensY, 'left.px': lensX}">
+
+          </div>
+        </div>
       </div>
 
       <!-- action buttons -->
@@ -47,11 +54,9 @@
 
   <!-- right -->
   <div class="right-column">
-    <div class="zoom-box" *ngIf="true" [ngStyle]="{
+    <div class="zoom-box" *ngIf="zoomVisible" [ngStyle]="{
       'background-image': 'url(' + getMainImageUrl(mainImage, zoomWidth) + ')',
       'background-position': backgroundPosition,
-       
-       
       }">
     </div>
     <h1>Samsung Galaxy S24 FE 5G</h1>
