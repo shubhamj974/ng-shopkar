@@ -51,21 +51,27 @@
          padding: 15px;
          cursor: crosshair;
 
+         display: flex;
+         justify-content: center;
+         align-items: center;
+
          .sh-cur {
            position: relative;
            display: inline-block;
 
+           img {
+             display: block;
+             max-width: 416px;
+             max-height: 416px;
+           }
 
            .lens {
              position: absolute;
-             width: 120px;
-             height: 120px;
-             background: rgba(200, 200, 200, 0.3);
-             border: 1px solid #aaa;
              pointer-events: none;
+             background-image: radial-gradient(rgba(0, 152, 255, 0.2) 2px, transparent 1px);
+             background-size: 5px 5px;
            }
          }
-
        }
      }
 

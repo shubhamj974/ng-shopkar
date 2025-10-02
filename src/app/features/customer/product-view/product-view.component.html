@@ -31,7 +31,12 @@
         <div class="sh-cur">
           <img id="mainImg" (mousemove)="onMouseMove($event)" [src]="getMainImageUrl(mainImage)" alt="Product Image"
             class="image">
-          <div class="lens" *ngIf="lensVisible" [ngStyle]="{'top.px': lensY, 'left.px': lensX}">
+          <div class="lens" *ngIf="lensVisible" [ngStyle]="{
+            'top.px': lensY,
+            'left.px': lensX,
+            'width.px': lensWidth,
+            'height.px': lensHeight
+          }">
 
           </div>
         </div>
@@ -55,7 +60,7 @@
   <!-- right -->
   <div class="right-column">
     <div class="zoom-box" *ngIf="zoomVisible" [ngStyle]="{
-      'background-image': 'url(' + getMainImageUrl(mainImage, zoomWidth) + ')',
+      'background-image': 'url(' + getMainImageUrl(mainImage) + ')',
       'background-position': backgroundPosition,
       }">
     </div>

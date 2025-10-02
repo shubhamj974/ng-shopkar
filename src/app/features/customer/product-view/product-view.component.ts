@@ -28,11 +28,10 @@ export class ProductViewComponent {
   public activeImg: any;
   public zoomVisible = false;
   public backgroundPosition = '0% 0%';
-  public zoomWidth = 1200;
-  public zoomHeight = 1200;
 
   lensVisible = false;
-  lensSize = 120;
+  lensWidth = 180;   // your desired width
+  lensHeight = 100;  // your desired height
   lensX = 0;
   lensY = 0;
   zoomBackground = '0% 0%';
@@ -49,7 +48,7 @@ export class ProductViewComponent {
 
   }
 
-  getMainImageUrl(url: string, size: number = 416): string {
+  getMainImageUrl(url: string, size: number = 832): string {
     return url.replace(/\/128\/128\//, `/${size}/${size}/`);
   }
 
@@ -63,22 +62,7 @@ export class ProductViewComponent {
     });
   }
 
-  zoomImage(event: MouseEvent) {
-    console.log(event);
 
-    this.zoomVisible = true;
-
-    const element = event.currentTarget as HTMLElement;
-    const rect = element.getBoundingClientRect();
-
-    const x = event.clientX - rect.left;
-    const y = event.clientY - rect.top;
-
-    const xPercent = (x / rect.width) * 100;
-    const yPercent = (y / rect.height) * 100;
-
-    this.backgroundPosition = `${xPercent}% ${yPercent}%`;
-  }
 
   hideZoom() {
     this.zoomVisible = false;
@@ -91,31 +75,43 @@ export class ProductViewComponent {
     this.lensVisible = false;
   }
 
+  zoomImage(event: MouseEvent) {
+    this.zoomVisible = true;
+    const element = event.currentTarget as HTMLElement;
+    const rect = element.getBoundingClientRect();
+
+    const x = event.clientX - rect.left;
+    const y = event.clientY - rect.top;
+
+    const xPercent = (x / rect.width) * 100;
+    const yPercent = (y / rect.height) * 100;
+
+    this.backgroundPosition = `${xPercent}% ${yPercent}%`;
+    console.log('backgroundPosition',this.backgroundPosition);
+    
+  }
+
   onMouseMove(event: MouseEvent) {
     const element = event.currentTarget as HTMLElement;
     const rect = element.getBoundingClientRect();
 
-    const lensSize = this.lensSize;
-
     let mouseX = event.clientX - rect.left;
     let mouseY = event.clientY - rect.top;
 
-    if (mouseX < lensSize / 2) mouseX = lensSize / 2;
-    if (mouseY < lensSize / 2) mouseY = lensSize / 2;
-    if (mouseX > rect.width - lensSize / 2) mouseX = rect.width - lensSize / 2;
-    if (mouseY > rect.height - lensSize / 2) mouseY = rect.height - lensSize / 2;
+    if (mouseX < this.lensWidth / 2) mouseX = this.lensWidth / 2;
+    if (mouseY < this.lensHeight / 2) mouseY = this.lensHeight / 2;
+    if (mouseX > rect.width - this.lensWidth / 2) mouseX = rect.width - this.lensWidth / 2;
+    if (mouseY > rect.height - this.lensHeight / 2) mouseY = rect.height - this.lensHeight / 2;
 
-    this.lensX = mouseX - lensSize / 2;
-    this.lensY = mouseY - lensSize / 2;
+    this.lensX = mouseX - this.lensWidth / 2;
+    this.lensY = mouseY - this.lensHeight / 2;
 
     const xPercent = (mouseX / rect.width) * 100;
     const yPercent = (mouseY / rect.height) * 100;
 
     this.zoomBackground = `${xPercent}% ${yPercent}%`;
+    console.log('zoomBackPosition',this.zoomBackground);
+
   }
-
-
-
-
 
 }

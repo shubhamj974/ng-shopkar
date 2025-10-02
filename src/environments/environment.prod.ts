@@ -1,4 +1,4 @@
 export const environment = {
   production: false,
-  apiUrl: 'https://shopkar.com',
+  apiUrl: 'https://shopkar-api-production.up.railway.app',
 };
