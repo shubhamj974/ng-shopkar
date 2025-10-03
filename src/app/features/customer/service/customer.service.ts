@@ -23,18 +23,26 @@ export class CustomerService {
   }
 
   getProduct() {
-  return this.http.get(`${this.url}/products`).pipe(
-    map((res: any) => {
-      if (res.status) {
-        return res.data.rows.map((p: any) => ({
-          ...p,
-          ...p.details,
-          details: undefined,
-        }));
-      }
-      return [];
-    })
-  );
-}
+    return this.http.get(`${this.url}/products`).pipe(
+      map((res: any) => {
+        if (res.status) {
+          return res.data.rows.map((p: any) => ({
+            ...p,
+            ...p.details,
+            details: undefined,
+          }));
+        }
+        return [];
+      })
+    );
+  }
+
+  getProductById(id: number) {
+    return this.http.get(`${this.url}/products/${id}/product`).pipe(
+      map((res) => {
+        return res;
+      })
+    )
+  }
 
 }

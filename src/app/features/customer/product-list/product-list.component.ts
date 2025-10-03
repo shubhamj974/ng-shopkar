@@ -154,13 +154,13 @@ export class ProductListComponent {
   public selected: 'yes' | 'no' | null = null;
   public reason: string = '';
   public isOpen = false; // 👈 declare it here
-  private customerSerivce = inject(CustomerService)
+  private customerService = inject(CustomerService)
   ngOnInit() {
     this.init()
   }
 
   init() {
-    this.customerSerivce.getProduct().subscribe(res => {
+    this.customerService.getProduct().subscribe(res => {
       console.log('products', res);
       this.products = res
       const categoryMap = new Map();

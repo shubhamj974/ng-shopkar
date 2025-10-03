@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { ProductCategoryMenuComponent } from '../product-category-menu/product-category-menu.component';
+import { CustomerService } from '../service/customer.service';
 
 @Component({
   selector: 'app-product-view',
@@ -36,8 +37,14 @@ export class ProductViewComponent {
   lensY = 0;
   zoomBackground = '0% 0%';
   zoomSize = '150%';
+
+  private customerService = inject(CustomerService)
   ngOnInit() {
-    this.activeImg = this.activeIndex
+    this.activeImg = this.activeIndex;
+    this.customerService.getProductById(2).subscribe((res : any) => {
+      console.log(res);
+      
+    })
 
   }
   hoverThumbnail(index: number) {
