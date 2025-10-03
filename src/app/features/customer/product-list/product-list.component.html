@@ -18,7 +18,7 @@
                         <img [src]="'https://rukminim2.flixcart.com/' + product.imageUrl" [alt]="product.name" />
                         <div class="compare-box">
                             <label>
-                                <input type="checkbox" />
+                                <input type="checkbox"(click)="$event.stopPropagation()" />
                                 <span>Add to Compare</span>
                             </label>
                         </div>
