@@ -1,6 +1,6 @@
  .product-page {
    display: flex;
-   gap: 20px;
+   gap: 15px;
    padding: 20px;
    margin: 0 70px 0 70px;
    background: white;
@@ -169,12 +169,248 @@
        position: absolute;
        top: 0;
        left: 0;
-       width: 849.4px;
-       height: 492px;
+       width: 846px;
+       height: 600px;
        background-repeat: no-repeat;
        background-size: 1200px 1200px;
        z-index: 10;
        overflow: hidden;
+       border: 1px solid $bg;
+       border-radius: 2px;
+     }
+
+     .sale-timer {
+       background-color: #fffeeb;
+       border: 1px solid $bg;
+       display: flex;
+       align-items: center;
+
+       .sale-img {
+         width: 50px;
+         height: 50px;
+         object-fit: contain;
+       }
+
+       .sale-info {
+         display: flex;
+         gap: 5px;
+
+         .sale-text,
+         .countdown {
+           font-size: 0.9rem;
+           color: #212121;
+           font-weight: bold;
+           font-family: Inter, -apple-system, Helvetica, Arial, sans-serif;
+         }
+
+       }
+     }
+
+     //  breadcrumb
+     .breadcrumb {
+       --bs-breadcrumb-item-padding-x: 2px;
+       --bs-breadcrumb-margin-bottom: 0;
+
+       .breadcrumb-item {
+         display: flex;
+         align-items: center;
+
+         a {
+           display: flex;
+           align-items: center;
+           color: $fl-color;
+           font-size: 12px;
+           cursor: pointer;
+         }
+       }
+     }
+
+     .product-container {
+       padding: 0;
+
+       .product-details {
+         .product-name {
+           font-size: 16px;
+           font-weight: 400;
+         }
+       }
+     }
+
+     // Discount badge
+     ._2lX4N0 {
+       color: $green-color;
+       font-size: 14px;
+       font-weight: 500;
+     }
+
+     //  price
+     .price-block {
+       display: flex;
+       align-items: center;
+       gap: 10px;
+       font-family: 'Roboto', sans-serif;
+
+       .price-info {
+         display: flex;
+         flex-direction: column;
+         gap: 4px;
+
+         .price-row {
+           display: flex;
+           align-items: center;
+           gap: 8px;
+
+           .current-price {
+             font-size: 24px;
+             font-weight: 500;
+             color: $black-color;
+           }
+
+           .original-price {
+             font-size: 14px;
+             font-weight: 400;
+             color: $fl-color;
+             text-decoration: line-through;
+           }
+
+           .discount-badge {
+             display: inline-flex;
+             align-items: center;
+             justify-content: center;
+             color: $green-color;
+             font-weight: 500;
+             font-size: 14px;
+
+             span {
+               display: inline-block;
+             }
+           }
+         }
+       }
+
+       .price-icon-container {
+         position: relative;
+         display: inline-block;
+
+         .price-icon {
+           cursor: pointer;
+           display: flex;
+           align-items: center;
+           position: relative;
+
+           svg {
+             width: 20px;
+             height: 20px;
+           }
+
+           // Hide popover by default
+           .price-details-popover {
+             position: absolute;
+             top: 28px;
+             left: -19px;
+             transform: translateY(-10px);
+             visibility: hidden;
+             z-index: 1000;
+             min-width: 250px;
+             background-color: #fff;
+             border: 1px solid $search-color;
+             border-radius: 6px;
+             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+             padding: 10px;
+             font-family: 'Roboto', sans-serif;
+             transition: all 0.3s ease;
+             margin-top: 10px;
+
+             // Outer triangle (border)
+             &::before {
+               content: "";
+               position: absolute;
+               bottom: 100%;
+               left: 20px;
+               border-width: 10px;
+               border-style: solid;
+               border-color: transparent transparent #eee transparent;
+             }
+
+             // Inner triangle (background)
+             &::after {
+               content: "";
+               position: absolute;
+               bottom: 100%;
+               left: 21px;
+               border-width: 8px;
+               border-style: solid;
+               border-color: transparent transparent #fff transparent; // matches popover background
+             }
+
+
+
+             .price-details-wrapper {
+               display: flex;
+               flex-direction: column;
+               gap: 8px;
+
+               .price-details-title {
+                 font-weight: 500;
+                 font-size: 13px;
+               }
+
+               .price-details-body {
+                 display: flex;
+                 flex-direction: column;
+                 gap: 6px;
+
+                 .price-row {
+                   display: flex;
+                   justify-content: space-between;
+                   align-items: center;
+
+                   .price-label {
+                     font-size: 12px;
+                     color: $fl-color;
+                     font-weight: 500;
+
+                     .price-sub-label {
+                       font-size: 10px;
+                       color: $fl-color;
+                     }
+                   }
+
+                   .price-value {
+                     font-size: 12px;
+                     color: $black-color;
+                     text-decoration: line-through;
+                   }
+
+                   .special-value {
+                     font-weight: 500;
+                     text-decoration: none;
+                   }
+
+                   &.special-price-row {
+                     .special-label {
+                       color: $black-color;
+                       font-weight: 500;
+                     }
+                   }
+                 }
+
+                 .sale-price {
+                   padding-bottom: 5px;
+                   border-bottom: 1px dashed $search-color;
+                 }
+               }
+             }
+           }
+
+           // Show popover on hover
+           &:hover .price-details-popover {
+             opacity: 1;
+             visibility: visible;
+             transform: translateY(0);
+           }
+         }
+       }
      }
    }
  }

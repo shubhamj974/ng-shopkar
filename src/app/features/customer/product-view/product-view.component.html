@@ -64,11 +64,142 @@
       'background-position': backgroundPosition,
       }">
     </div>
-    <h1>Samsung Galaxy S24 FE 5G</h1>
-    <p>128 GB, Blue Color</p>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-    <p>More details...</p>
-    <p>More details...</p>
+    @if(true){
+    <ng-container>
+      <div class="sale-timer d-flex align-items-center shadow-sm">
+        <img src="https://rukminim2.flixcart.com/fk-p-flap/80/80/image/2f0415aea7ac7b24.jpg?q=90" alt="Sale"
+          class="sale-img ms-2 me-2">
+        <div class="sale-info">
+          <span class="sale-text d-block">Sale ends in</span>
+          <span class="countdown">
+            <span id="hours">04 hrs :</span>
+            <span id="minutes">35 mins :</span>
+            <span id="seconds">02 secs</span>
+          </span>
+        </div>
+      </div>
+    </ng-container>
+    }
+
+
+    <!-- breadcrumb -->
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb pt-2">
+        <li class="breadcrumb-item">
+          <a href="/" class="text-decoration-none">Home</a>
+        </li>
+        <li class="breadcrumb-item">
+          <a class="text-decoration-none">Mobiles & Accessories</a>
+        </li>
+        <li class="breadcrumb-item">
+          <a class="text-decoration-none">Mobiles</a>
+        </li>
+        <li class="breadcrumb-item">
+          <a class="text-decoration-none">Samsung Mobiles</a>
+        </li>
+
+      </ol>
+    </nav>
+    <!-- name and rating -->
+    <div class="product-list">
+      <div class="product-card">
+        <div class="product-container">
+          <div class="product-details">
+            <h3 class="product-name m-0">Samsung Galaxy S24 FE 5G (Mint, 256 GB) (8 GB RAM)</h3>
+            <div class="rating-box">
+              <span class="rating-value">
+                4.5
+                <span class="star">★</span>
+              </span>
+              <span class="rating-count">
+                20,000 Ratings
+                <span class="and">&amp;</span>
+                15,000 Reviews
+              </span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Offer -->
+    <div class="_2lX4N0"><span>Extra ₹20000 off</span></div>
+
+    <!-- price  -->
+    <div class="price-block pt-2">
+      <div class="price-info">
+        <div class="price-row">
+          <div class="current-price">₹45,999</div>
+          <div class="original-price">₹65,999</div>
+          <div class="discount-badge"><span>30% off</span></div>
+        </div>
+      </div>
+
+
+      <div class="price-icon-container">
+        <div class="price-icon">
+          <div id="price-info-icon">
+            <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+              <defs>
+                <circle id="b" cx="8" cy="8" r="8"></circle>
+                <filter id="a" width="130%" height="130%" x="-15%" y="-8.8%" filterUnits="objectBoundingBox">
+                  <feMorphology in="SourceAlpha" operator="dilate" radius=".4" result="shadowSpreadOuter1">
+                  </feMorphology>
+                  <feOffset dy="1" in="shadowSpreadOuter1" result="shadowOffsetOuter1"></feOffset>
+                  <feGaussianBlur in="shadowOffsetOuter1" result="shadowBlurOuter1" stdDeviation=".5"></feGaussianBlur>
+                  <feComposite in="shadowBlurOuter1" in2="SourceAlpha" operator="out" result="shadowBlurOuter1">
+                  </feComposite>
+                  <feColorMatrix in="shadowBlurOuter1" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.2 0">
+                  </feColorMatrix>
+                </filter>
+              </defs>
+              <g fill="none" fill-rule="evenodd">
+                <g transform="translate(2 1)">
+                  <use fill="#000" filter="url(#a)" xlink:href="#b"></use>
+                  <use fill="#FCFCFC" stroke="#000" stroke-opacity=".3" stroke-width=".8" xlink:href="#b"></use>
+                </g>
+                <text fill="#1D1D1D" font-family="Roboto-Medium, Roboto" font-size="11" font-weight="400" opacity=".59"
+                  transform="translate(2 1)">
+                  <tspan x="6.6" y="12.2">i</tspan>
+                </text>
+              </g>
+            </svg>
+          </div>
+
+          <!-- Price details popover -->
+          <div class="price-details-popover">
+            <div class="price-details-wrapper">
+              <div class="price-details-title">Price details</div>
+              <div class="price-details-body">
+
+                <div class="price-row">
+                  <div class="price-label">
+                    Maximum Retail Price
+                    <div class="price-sub-label">(incl. of all taxes)</div>
+                  </div>
+                  <div class="price-value">₹65,999.00</div>
+                </div>
+
+                <div class="price-row sale-price">
+                  <div class="price-label">Selling Price</div>
+                  <div class="price-value">₹65,999.00</div>
+                </div>
+
+                <div class="price-row special-price-row">
+                  <div class="price-label special-label">Special Price</div>
+                  <div class="price-value special-value">₹45,999.00</div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
   </div>
 
 
