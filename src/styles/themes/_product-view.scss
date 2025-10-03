@@ -177,6 +177,7 @@
        overflow: hidden;
        border: 1px solid $bg;
        border-radius: 2px;
+       box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
      }
 
      .sale-timer {
@@ -261,7 +262,7 @@
            gap: 8px;
 
            .current-price {
-             font-size: 24px;
+             font-size: 26px;
              font-weight: 500;
              color: $black-color;
            }
@@ -412,6 +413,204 @@
          }
        }
      }
+
+
+     // delivery
+     .protect-delivery-container {
+       display: flex;
+       flex-direction: column;
+       gap: 2px;
+       font-family: 'Roboto', sans-serif;
+       font-size: 13px;
+       margin-top: 10px;
+
+       .protect-fee {
+         display: flex;
+         align-items: center;
+         gap: 6px;
+         font-size: 14px;
+         font-weight: 500;
+         color: $light-dark;
+
+
+         .learn-more {
+           font-size: 13px;
+           color: $blue-color;
+           cursor: pointer;
+         }
+       }
+
+       .delivery-info {
+         display: flex;
+         align-items: center;
+         color: $light-dark;
+
+         .delivery-text {
+           font-size: 14px;
+           font-weight: 400;
+         }
+       }
+     }
+
+     //bank offer
+     .offers-container {
+       font-family: 'Roboto', sans-serif;
+       font-size: 13px;
+       max-width: 100%;
+
+       .offers-header {
+         font-weight: 500;
+         font-size: 16px;
+         margin: 8px 0 8px 0;
+         color: $black-color;
+       }
+
+       .offers-list {
+         display: flex;
+         flex-direction: column;
+         gap: 10px;
+
+         .offer-item {
+           display: flex;
+           align-items: center;
+           font-size: 14px;
+           gap: 6px;
+           white-space: nowrap; // prevent wrapping
+           flex-shrink: 0; // prevent shrinking in flex
+
+           .offer-icon {
+             width: 18px;
+             height: 18px;
+             flex-shrink: 0;
+           }
+
+           .offer-text {
+             display: flex;
+             align-items: center;
+             gap: 4px;
+
+             .offer-title {
+               font-weight: 500;
+               color: $black-color;
+             }
+
+             .offer-description {
+               font-weight: 400;
+               color: #1a1a1a;
+             }
+
+             .offer-tnc {
+               font-size: 14px;
+               color: $blue-color;
+               font-weight: 400;
+               cursor: pointer;
+             }
+           }
+         }
+       }
+
+       .view-more-btn {
+         font-size: 14px;
+         margin-top: 8px;
+         background: none;
+         border: none;
+         color: $blue-color;
+         font-weight: 500;
+         cursor: pointer;
+         padding: 4px 0;
+         text-align: left;
+
+         &:hover {
+           text-decoration: underline;
+         }
+       }
+     }
+
+
+     //exchange offer
+
+     .exchange-options-container {
+       display: flex;
+       flex-direction: column;
+       gap: 8px;
+       border: 1px solid $search-color;
+       border-radius: 2px;
+       font-family: 'Roboto', sans-serif;
+       max-width: 400px;
+
+       .exchange-option {
+         display: flex;
+         align-items: flex-start;
+         gap: 12px;
+         padding: 15px;
+         border-bottom: 1px solid $search-color;
+
+         input[type="radio"] {
+           display: none;
+         }
+
+         .radio-custom {
+           width: 18px;
+           height: 17px;
+           border: 2px solid #999;
+           border-radius: 50%;
+           position: relative;
+          cursor: pointer;
+           
+
+         }
+
+         input[type="radio"]:checked+.radio-custom::after {
+             content: '';
+             position: absolute;
+             top: 1px;
+             left: 1px;
+             width: 12px;
+             height: 12px;
+             background-color: $blue-color;
+             border-radius: 50%;
+           }
+
+         .option-text {
+           display: flex;
+           flex-direction: column;
+           width: 100%;
+
+           .title-price {
+             display: flex;
+             align-items: center;
+             justify-content: space-between;
+
+             .option-title {
+               font-weight: 400;
+               color: $fl-color;
+             }
+
+             .option-price {
+               font-weight: 500;
+               color: $fl-color;
+             }
+           }
+
+           .exchange-info {
+             font-size: 13px;
+             color: $red-color;
+             margin-top: 4px; // space below title-price row
+           }
+         }
+
+         &.disabled {
+           //  opacity: 0.6;
+           cursor: not-allowed;
+         }
+       }
+
+     }
+
+
+
+
+
    }
  }
 
