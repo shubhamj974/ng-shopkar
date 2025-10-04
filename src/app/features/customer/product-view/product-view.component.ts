@@ -20,7 +20,6 @@ export class ProductViewComponent {
   public zoomVisible = false;
   public backgroundPosition = '0% 0%';
   public product :any = {}
-  private customerService = inject(CustomerService)
   lensVisible = false;
   lensWidth = 180;
   lensHeight = 100;
@@ -28,6 +27,8 @@ export class ProductViewComponent {
   lensY = 0;
   zoomBackground = '0% 0%';
   zoomSize = '150%';
+
+  private customerService = inject(CustomerService)
   ngOnInit() {
     this.activeImg = this.activeIndex
     this.customerService.getProductById(2).subscribe((res: any) => {
@@ -115,6 +116,14 @@ export class ProductViewComponent {
 
     this.zoomBackground = `${xPercent}% ${yPercent}%`;
 
+  }
+
+  readMore() {
+    this.isExpanded = true;
+  }
+
+  viewFeature() {
+    this.isFeatureVisible = true;
   }
 
 }
