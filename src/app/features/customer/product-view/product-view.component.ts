@@ -1,51 +1,57 @@
-import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { CommonModule, JsonPipe } from '@angular/common';
+import { Component, inject, OnInit } from '@angular/core';
 import { ProductCategoryMenuComponent } from '../product-category-menu/product-category-menu.component';
+import { CustomerService } from '../service/customer.service';
 
 @Component({
   selector: 'app-product-view',
   standalone: true,
-  imports: [CommonModule, ProductCategoryMenuComponent],
+  imports: [CommonModule, ProductCategoryMenuComponent, JsonPipe],
   templateUrl: './product-view.component.html',
   styleUrl: './product-view.component.scss'
 })
 export class ProductViewComponent {
-  public images: string[] = [
-    "https://rukminim2.flixcart.com/image/128/128/xif0q/mobile/4/p/o/-original-imahfw4aasyhherc.jpeg?q=70&crop=false",
-    "https://rukminim2.flixcart.com/image/128/128/xif0q/mobile/1/8/g/-original-imahfw4awpphaa8g.jpeg?q=70&crop=false",
-    "https://rukminim2.flixcart.com/image/128/128/xif0q/mobile/n/t/4/-original-imahfw4asstjjqgf.jpeg?q=70&crop=false",
-    "https://rukminim2.flixcart.com/image/128/128/xif0q/mobile/s/1/j/-original-imahfw4apfx7ncfz.jpeg?q=70&crop=false",
-    "https://rukminim2.flixcart.com/image/128/128/xif0q/mobile/v/o/s/-original-imahfw4a8qdtfgr3.jpeg?q=70&crop=false",
-    "https://rukminim2.flixcart.com/image/128/128/xif0q/mobile/w/m/5/-original-imahfw4ahyuj7mpd.jpeg?q=70&crop=false",
-    "https://rukminim2.flixcart.com/image/128/128/xif0q/mobile/a/h/z/-original-imahfw4achf8wgxd.jpeg?q=70&crop=false",
-    "https://rukminim2.flixcart.com/image/128/128/xif0q/mobile/i/0/a/-original-imahfw4an4tz2pgm.jpeg?q=70&crop=false",
-    "https://rukminim2.flixcart.com/image/128/128/xif0q/mobile/h/s/u/-original-imahfw4a77zhfewy.jpeg?q=70&crop=false",
-    "https://rukminim2.flixcart.com/image/128/128/xif0q/mobile/n/m/3/-original-imahfw4ahbhymx8j.jpeg?q=70&crop=false"
-  ];
-
+  public images: Array<any> = []
+  public isExpanded = false;
+  public isFeatureVisible = false;
   public activeIndex: number = 0;
-  public mainImage: string = this.images[0];
+  public mainImage!: string;
   public activeImg: any;
   public zoomVisible = false;
   public backgroundPosition = '0% 0%';
-
+  public product :any = {}
+  private customerService = inject(CustomerService)
   lensVisible = false;
-  lensWidth = 180;   // your desired width
-  lensHeight = 100;  // your desired height
+  lensWidth = 180;
+  lensHeight = 100;
   lensX = 0;
   lensY = 0;
   zoomBackground = '0% 0%';
   zoomSize = '150%';
   ngOnInit() {
     this.activeImg = this.activeIndex
-
+    this.customerService.getProductById(2).subscribe((res: any) => {
+      console.log(res);
+      this.product = res;
+      this.imageMap(res.images)
+    });
   }
-  hoverThumbnail(index: number) {
-    this.mainImage = this.images[index];
-    this.activeIndex = index;
-    this.mainImage = this.images[index];
-    this.activeImg = this.activeIndex
 
+  imageMap(img: Array<any>) {
+    this.images = img;
+    this.activeImg = this.activeIndex;
+    if (this.images.length > 0) {
+      this.mainImage = this.images[0].imageUrl;
+    }
+  }
+
+  
+
+
+  hoverThumbnail(index: number) {
+    this.mainImage = this.images[index].imageUrl;
+    this.activeIndex = index;
+    this.activeImg = this.activeIndex
   }
 
   getMainImageUrl(url: string, size: number = 832): string {
@@ -87,8 +93,6 @@ export class ProductViewComponent {
     const yPercent = (y / rect.height) * 100;
 
     this.backgroundPosition = `${xPercent}% ${yPercent}%`;
-    console.log('backgroundPosition',this.backgroundPosition);
-    
   }
 
   onMouseMove(event: MouseEvent) {
@@ -110,7 +114,6 @@ export class ProductViewComponent {
     const yPercent = (mouseY / rect.height) * 100;
 
     this.zoomBackground = `${xPercent}% ${yPercent}%`;
-    console.log('zoomBackPosition',this.zoomBackground);
 
   }
 

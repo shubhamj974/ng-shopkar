@@ -10,11 +10,10 @@
             <path d="M16 23.207L6.11 13.161 16 3.093 12.955 0 0 13.161l12.955 13.161z" fill="#000" class=""></path>
           </svg>
         </div>
-
         <ul class="thumbnails" id="thumbnailList">
-          @for(img of images;track img){
+          @for(img of images;track img.id){
           <li [class.active]="$index === activeIndex" (mouseover)="hoverThumbnail($index)">
-            <img [src]="img" alt="">
+            <img [src]="img.imageUrl" alt="">
           </li>
           }
         </ul>
@@ -29,8 +28,10 @@
       <div class="main-image" (mousemove)="zoomImage($event)" (mouseleave)="hideZoom()" (mouseleave)="onMouseLeave()"
         (mouseenter)="onMouseEnter($event)">
         <div class="sh-cur">
+          @if(mainImage){
           <img id="mainImg" (mousemove)="onMouseMove($event)" [src]="getMainImageUrl(mainImage)" alt="Product Image"
             class="image">
+          }
           <div class="lens" *ngIf="lensVisible" [ngStyle]="{
             'top.px': lensY,
             'left.px': lensX,
@@ -59,11 +60,13 @@
 
   <!-- right -->
   <div class="right-column">
-    <div class="zoom-box" *ngIf="zoomVisible" [ngStyle]="{
-      'background-image': 'url(' + getMainImageUrl(mainImage) + ')',
-      'background-position': backgroundPosition,
-      }">
+    @if(zoomVisible){
+    <div class="zoom-box" [ngStyle]="{
+        'background-image': 'url(' + getMainImageUrl(mainImage) + ')',
+        'background-position': backgroundPosition,
+        }">
     </div>
+    }
     @if(false){
     <ng-container>
       <div class="sale-timer d-flex align-items-center shadow-sm">
@@ -88,15 +91,13 @@
         <li class="breadcrumb-item">
           <a href="/" class="text-decoration-none">Home</a>
         </li>
+        @for(bread of product?.otherDetails?.breadcrumbs;track bread){
         <li class="breadcrumb-item">
-          <a class="text-decoration-none">Mobiles & Accessories</a>
+          <a class="text-decoration-none">{{bread?.name}}</a>
         </li>
-        <li class="breadcrumb-item">
-          <a class="text-decoration-none">Mobiles</a>
-        </li>
-        <li class="breadcrumb-item">
-          <a class="text-decoration-none">Samsung Mobiles</a>
-        </li>
+
+        }
+
 
       </ol>
     </nav>
@@ -105,16 +106,16 @@
       <div class="product-card">
         <div class="product-container">
           <div class="product-details">
-            <h3 class="product-name m-0">Samsung Galaxy S24 FE 5G (Mint, 256 GB) (8 GB RAM)</h3>
+            <h3 class="product-name m-0">{{product?.name}}</h3>
             <div class="rating-box">
               <span class="rating-value">
-                4.5
+                {{product?.details?.averageRating}}
                 <span class="star">★</span>
               </span>
               <span class="rating-count">
-                20,000 Ratings
+                {{product?.details?.ratingsCount}}
                 <span class="and">&amp;</span>
-                15,000 Reviews
+                {{product?.details?.reviewsCount}}
               </span>
             </div>
           </div>
@@ -125,15 +126,17 @@
     </div>
 
     <!-- Offer -->
+    @if(true){
     <div class="_2lX4N0"><span>Extra ₹20000 off</span></div>
+    }
 
     <!-- price  -->
     <div class="price-block pt-2">
       <div class="price-info">
         <div class="price-row">
-          <div class="current-price">₹45,999</div>
-          <div class="original-price">₹65,999</div>
-          <div class="discount-badge"><span>30% off</span></div>
+          <div class="current-price">₹{{product?.price | number}}</div>
+          <div class="original-price">₹{{product?.details?.mrp | number}}</div>
+          <div class="discount-badge"><span>{{product?.details?.discountPercent}}% off</span></div>
         </div>
       </div>
 
@@ -179,17 +182,17 @@
                     Maximum Retail Price
                     <div class="price-sub-label">(incl. of all taxes)</div>
                   </div>
-                  <div class="price-value">₹65,999.00</div>
+                  <div class="price-value">₹{{product?.price | number}}.00</div>
                 </div>
 
                 <div class="price-row sale-price">
                   <div class="price-label">Selling Price</div>
-                  <div class="price-value">₹65,999.00</div>
+                  <div class="price-value">₹{{product?.details?.mrp | number}}.00</div>
                 </div>
 
                 <div class="price-row special-price-row">
                   <div class="price-label special-label">Special Price</div>
-                  <div class="price-value special-value">₹45,999.00</div>
+                  <div class="price-value special-value">₹{{product?.price | number}}.00</div>
                 </div>
 
               </div>
@@ -203,7 +206,7 @@
     <!-- delivery -->
     <div class="protect-delivery-container">
       <div class="protect-fee">
-        <span class="fee-amount">+ ₹149 Protect Promise Fee</span>
+        <span class="fee-amount">+ ₹{{product?.otherDetails?.protectFee | number}} Protect Promise Fee</span>
         <span class="learn-more">Learn more</span>
       </div>
       <div class="delivery-info">
@@ -216,79 +219,52 @@
       <div class="offers-header">Available offers</div>
 
       <div class="offers-list">
+        @for(offer of product?.offers;track offer.id){
         <div class="offer-item">
           <img
             src="https://rukminim2.flixcart.com/www/36/36/promos/06/09/2016/c22c9fc4-0555-4460-8401-bf5c28d7ba29.png?q=90"
             alt="offer icon" class="offer-icon">
           <div class="offer-text">
-            <span class="offer-title">Bank Offer</span>
-            <span class="offer-description">5% cashback on Axis Bank Flipkart Debit Card up to ₹750</span>
+            <span class="offer-title">{{offer?.type}}</span>
+            <span class="offer-description">{{offer?.description}}</span>
             <span class="offer-tnc">T&amp;C</span>
           </div>
         </div>
-
-        <div class="offer-item">
-          <img
-            src="https://rukminim2.flixcart.com/www/36/36/promos/06/09/2016/c22c9fc4-0555-4460-8401-bf5c28d7ba29.png?q=90"
-            alt="offer icon" class="offer-icon">
-          <div class="offer-text">
-            <span class="offer-title">Bank Offer</span>
-            <span class="offer-description">5% cashback on Flipkart SBI Credit Card upto ₹4,000 per calendar
-              quarter</span>
-            <span class="offer-tnc">T&amp;C</span>
-          </div>
-        </div>
-
-        <div class="offer-item">
-          <img
-            src="https://rukminim2.flixcart.com/www/36/36/promos/06/09/2016/c22c9fc4-0555-4460-8401-bf5c28d7ba29.png?q=90"
-            alt="offer icon" class="offer-icon">
-          <div class="offer-text">
-            <span class="offer-title">Bank Offer</span>
-            <span class="offer-description"> cashback on Flipkart Axis Bank Credit Card upto ₹4,000 per statement
-              quarter</span>
-            <span class="offer-tnc">T&amp;C</span>
-          </div>
-        </div>
-
-        <div class="offer-item">
-          <img
-            src="https://rukminim2.flixcart.com/www/36/36/promos/06/09/2016/c22c9fc4-0555-4460-8401-bf5c28d7ba29.png?q=90"
-            alt="offer icon" class="offer-icon">
-          <div class="offer-text">
-            <span class="offer-title">Special Price</span>
-            <span class="offer-description">Get extra ₹20,000 off</span>
-            <span class="offer-tnc">T&amp;C</span>
-          </div>
-        </div>
+        }
       </div>
 
       <button class="view-more-btn">View 1 more offer</button>
     </div>
 
     <!-- exchanges offer -->
-    <div class="exchange-options-container">
-      <label class="exchange-option" style="background-color: #f5faff;">
-        <input type="radio" name="exchange-options" checked>
-        <div class="radio-custom"></div>
-        <div class="option-text d-flex flex-row justify-content-between">
-          <div class="option-title">Buy without Exchange</div>
-          <div class="option-price">₹45,999</div>
-        </div>
-      </label>
-
-      <label class="exchange-option disabled">
-        <input type="radio" name="exchange-options" disabled>
-        <div class="radio-custom"></div>
-        <div class="option-text">
-          <div class="title-price">
-            <div class="option-title">Buy with Exchange</div>
-            <div class="option-price">up to ₹35,410 off</div>
-          </div>
-          <div class="exchange-info">Enter pincode to check if exchange is available</div>
-        </div>
-      </label>
-    </div>
+     @if(product?.exchangeOptions?.length){
+       <div class="exchange-options-container">
+         <label class="exchange-option" style="background-color: #f5faff;">
+           <input type="radio" name="exchange-options" checked>
+           <div class="radio-custom"></div>
+           <div class="option-text d-flex flex-row justify-content-between">
+             <div class="option-title">{{ product?.exchangeOptions[0]?.type}}</div>
+             <div class="option-price">₹{{ product?.exchangeOptions[0]?.price }}</div>
+           </div>
+         </label>
+   
+         <label class="exchange-option disabled">
+           <input type="radio" name="exchange-options" disabled>
+           <div class="radio-custom"></div>
+           <div class="option-text">
+             <div class="title-price">
+               <div class="option-title">{{ product?.exchangeOptions[0]?.type}}</div>
+               <div class="option-price">₹{{ product?.exchangeOptions[0]?.price }}</div>
+             </div>
+             @if(product?.exchangeOptions[1]?.note){
+             <div class="exchange-info">{{product?.exchangeOptions[1]?.note}}</div>
+             }@else{
+             <div class="exchange-info">Enter pincode to check if exchange is available</div>
+             }
+           </div>
+         </label>
+       </div>
+     }
 
     <!-- warranty-box -->
 
@@ -296,14 +272,14 @@
       <!-- Image -->
       <div class="warranty-img me-4">
         <img
-          src="https://rukminim2.flixcart.com/image/160/160/prod-fk-cms-brand-images/9a95c8afa921a5b7f48302b1cb9d994a0a5e9f5b718ebab4affbae158c9a0068.jpg?q=90"
-          alt="Warranty" class="img-fluid">
+          [src]="product?.otherDetails?.warranty?.brandLogo"
+          [alt]="product?.otherDetails?.warranty?.brandLogo"  class="img-fluid">
       </div>
 
       <!-- Text -->
       <div class="warranty-text">
         <span class="main-text">
-          1 Year Manufacturer Warranty for Device and 6 Months for In-Box Accessories
+          {{product?.otherDetails?.warranty?.warrantySummary}}
         </span>
         <span class="know-more">Know More</span>
       </div>
@@ -315,26 +291,29 @@
       <div class="col-md-6 d-flex p-0">
         <span class="option-title">Color</span>
         <ul class="option-list d-flex flex-wrap mb-0">
-          <li class="active"><img
-              src="https://rukminim2.flixcart.com/image/144/144/xif0q/mobile/u/r/t/-original-imahfw4ahyk6qfxe.jpeg?q=50"
-              alt="Blue"></li>
-          <li><img
-              src="https://rukminim2.flixcart.com/image/144/144/xif0q/mobile/g/d/g/-original-imahfw4ahckefvxe.jpeg?q=50"
-              alt="Graphite"></li>
-          <li><img
-              src="https://rukminim2.flixcart.com/image/144/144/xif0q/mobile/4/p/o/-original-imahfw4aasyhherc.jpeg?q=50"
-              alt="Mint"></li>
+          @for(color of product?.colors;track color.id){
+            <li class="active"><img
+              [src]="color?.img"
+              alt="color?.name"
+              >
+              </li>
+          }
+         
         </ul>
       </div>
 
       <!-- Storage Column -->
-      <div class="col-md-6 d-flex">
-        <span class="option-title">Storage</span>
-        <ul class="option-list d-flex flex-wrap mb-0 wxy">
-          <li class="active">128 GB</li>
-          <li>256 GB</li>
-        </ul>
-      </div>
+       @if(product?.otherDetails?.storageOptions.length > 1){
+         <div class="col-md-6 d-flex">
+           <span class="option-title">Storage</span>
+           <ul class="option-list d-flex flex-wrap mb-0 wxy">
+            @for(storage of product?.otherDetails?.storageOptions;track storage){
+              <li class="active">{{storage}}</li>
+            }
+           </ul>
+         </div>
+
+       }
     </div>
 
     <!-- delivery-box -->
@@ -360,11 +339,10 @@
         <div class="section">
           <div class="section-title">Highlights</div>
           <ul class="section-list wytuew">
-            <li>8 GB RAM | 256 GB ROM</li>
-            <li>17.02 cm (6.7 inch) Full HD+ Display</li>
-            <li>50MP + 12MP | 10MP Front Camera</li>
-            <li>4700 mAh Battery</li>
-            <li>Exynos 2400e Processor</li>
+            @for(highLig of product?.otherDetails?.highlights;track highLig){
+              <li>{{highLig}}</li>
+            }
+             
           </ul>
         </div>
       </div>
@@ -375,8 +353,8 @@
           <div class="section-title">Easy Payment Options</div>
           <div class="HQijVm">
             <ul class="section-list">
-              <li>No cost EMI starting from ₹7,667/month</li>
-              <li>Net banking &amp; Credit/ Debit/ ATM card</li>
+              <li>{{product?.otherDetails?.paymentOptions?.EMI}}</li>
+              <li>{{product?.otherDetails?.paymentOptions?.methods[0]}} &amp; {{product?.otherDetails?.paymentOptions?.methods[1]}}</li>
             </ul>
             <div class="view-details">View Details</div>
           </div>
@@ -384,6 +362,435 @@
       </div>
     </div>
 
+    <!-- seller -->
+    <div class="seller-section col-12 d-block">
+      <div class="seller-wrapper">
+        <!-- Seller label -->
+        <div class="seller-label">
+          <span>Seller</span>
+        </div>
+
+        <div>
+          <div id="sellerName" class="seller-name-box">
+            <span>
+              <span class="seller-name">{{product?.otherDetails?.seller?.name}}</span>
+              <div class="seller-rating">
+                {{product?.otherDetails?.seller?.rating}}
+                <img
+                  src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMyIgaGVpZ2h0PSIxMiI+PHBhdGggZmlsbD0iI0ZGRiIgZD0iTTYuNSA5LjQzOWwtMy42NzQgMi4yMy45NC00LjI2LTMuMjEtMi44ODMgNC4yNTQtLjQwNEw2LjUuMTEybDEuNjkgNC4wMSA0LjI1NC40MDQtMy4yMSAyLjg4Mi45NCA0LjI2eiIvPjwvc3ZnPg=="
+                  alt="star" class="rating-star">
+              </div>
+            </span>
+          </div>
+
+          <!-- Seller features -->
+          <div class="seller-features">
+            <ul class="features-list">
+              @for(support of product?.otherDetails?.seller?.support;track support){
+                <li class="feature-item">
+                  <div class="feature-text">
+                    {{support}}
+                    <div class="feature-help">
+                      <span class="question">?</span>
+                    </div>
+                  </div>
+                </li>
+              }
+               
+            </ul>
+          </div>
+
+          <!-- Other sellers link -->
+          <li class="other-sellers">
+            <a
+              href="/sellers?pid=MOBH4ZG3JACNJMZC&otracker=AS_Query_OrganicAutoSuggest_6_4_na_na_na&fetchId=17907858-c06f-4c61-a91e-7554becafee3.MOBH4ZG3JACNJMZC">
+              <div class="see-other-sellers">See other sellers</div>
+            </a>
+          </li>
+        </div>
+      </div>
+    </div>
+
+    <!-- description -->
+    <div class="description-section col-12 d-block">
+      <div class="description-wrapper">
+        <!-- Title -->
+        <div class="description-title">Description</div>
+
+        <!-- Description content -->
+        <div class="description-content">
+          <div class="description-text">{{product?.otherDetails?.description || "NA"}}</div>
+
+          <div class="description-extra">
+            <div class="extra-icon"></div>
+          </div>
+        </div>
+
+        <!-- Read more -->
+        <div class="description-read-more">Read More</div>
+      </div>
+    </div>
+
+    <!-- product description -->
+    @if(product?.otherDetails?.description){
+      <div class="col-12 d-block">
+        <div class="XSQUa3">
+          <div class="Zg-WCR">
+            Product Description
+          </div>
+  
+        </div>
+        <div class="pqHCzB">
+          <div class="CB-A+e w9oVFJ">
+            <div>
+              <div>
+                <div class="_0B07y7 sR34dU Zhp430 text-center">
+                  <img
+                    src="https://rukminim2.flixcart.com/image/200/200/cms-rpd-img/81b69e3640cf47269a8f3bd9c7328216_19956771077_1.jpg.jpeg?q=90"
+                    style="max-width: 100%; vertical-align: middle;">
+                </div>
+                <div>
+                  <div class="_9GQWrZ">
+                    Favourite Turned Best Seller
+                  </div>
+                  <div class="AoD2-N">
+                    <p class="m-0">India has spoken – S24 FE is 2025’s best-selling Android smartphone</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+  
+        <div class="pqHCzB">
+          <div class="CB-A+e w9oVFJ">
+            <div>
+              <div>
+                <div class="_0B07y7 IqfVRM Zhp430 text-center"><img
+                    src="https://rukminim2.flixcart.com/image/200/200/cms-rpd-img/4f144fa58b7f4c889998cd6fe5a0d1fc_19956772a1e_2.jpg.jpeg?q=90"
+                    style="max-width: 100%; vertical-align: middle;"></div>
+                <div>
+                  <div class="_9GQWrZ">Elevate Your Everyday Experience with next Gen Features</div>
+                  <div class="AoD2-N">
+                    <p>FE’s most powerful camera yet. Supported by Google Gemini and more exciting features</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+  
+        <div class="pqHCzB hJ2VAV" [class.visible]="isFeatureVisible">
+          <div class="CB-A+e w9oVFJ">
+            <div>
+              <div>
+                <div class="_0B07y7 sR34dU Zhp430"><img
+                    src="https://rukminim2.flixcart.com/image/200/200/cms-rpd-img/ebe92bdb0c3848d68d8a2d5bdee6322c_19666f238ee_2.jpg.jpeg?q=90"
+                    style="max-width: 100%; vertical-align: middle;"></div>
+                <div>
+                  <div class="_9GQWrZ">Galaxy AI for your everyday</div>
+                  <div class="AoD2-N">
+                    <p>Take your daily tasks and hobbies up a notch with Galaxy AI.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+  
+        <div class="pqHCzB hJ2VAV" [class.visible]="isFeatureVisible">
+          <div class="CB-A+e w9oVFJ">
+            <div>
+              <div>
+                <div class="_0B07y7 IqfVRM Zhp430"><img
+                    src="https://rukminim2.flixcart.com/image/200/200/cms-rpd-img/390ed4259cec433e94bf6cc3c38cba91_19666f23044_3.jpg.jpeg?q=90"
+                    style="max-width: 100%; vertical-align: middle;"></div>
+                <div>
+                  <div class="_9GQWrZ">Most powerful camera in FE series ever</div>
+                  <div class="AoD2-N">
+                    <p>Next level videos and photos</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+  
+        <div class="pqHCzB hJ2VAV" [class.visible]="isFeatureVisible">
+          <div class="CB-A+e w9oVFJ">
+            <div>
+              <div>
+                <div class="_0B07y7 sR34dU Zhp430"><img
+                    src="https://rukminim2.flixcart.com/image/200/200/cms-rpd-img/55ad0b66242742848cfe2f3b3215e001_1969080ece8_4-Desktop.jpg.jpeg?q=90"
+                    style="max-width: 100%; vertical-align: middle;"></div>
+                <div>
+                  <div class="_9GQWrZ">Performance that won’t quit</div>
+                  <div class="AoD2-N">
+                    <p>Hyper-realistic gaming experience</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+  
+        <div class="pqHCzB hJ2VAV" [class.visible]="isFeatureVisible">
+          <div class="CB-A+e w9oVFJ">
+            <div>
+              <div>
+                <div class="_0B07y7 IqfVRM Zhp430"><img
+                    src="https://rukminim2.flixcart.com/image/200/200/cms-rpd-img/45c01800a6a14b0bb3e309bc0fc68ef5_19666f22027_5.jpg.jpeg?q=90"
+                    style="max-width: 100%; vertical-align: middle;"></div>
+                <div>
+                  <div class="_9GQWrZ">See more. Do more. All day long</div>
+                  <div class="AoD2-N">
+                    <p>Immersive viewing experience with long-lasting battery</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+  
+        <div class="pqHCzB hJ2VAV" [class.visible]="isFeatureVisible">
+          <div class="CB-A+e w9oVFJ">
+            <div>
+              <div>
+                <div class="_0B07y7 sR34dU Zhp430"><img
+                    src="https://rukminim2.flixcart.com/image/200/200/cms-rpd-img/1de68c0a8e2a440788fe541092bb20cc_19666f21bcf_6.jpg.jpeg?q=90"
+                    style="max-width: 100%; vertical-align: middle;"></div>
+                <div>
+                  <div class="_9GQWrZ">Privacy, secured. Durability, ensured</div>
+                  <div class="AoD2-N">
+                    <p>Enjoy unmatched privacy and durability</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+  
+        <div class="pqHCzB hJ2VAV" [class.visible]="isFeatureVisible">
+          <div class="CB-A+e w9oVFJ">
+            <div>
+              <div>
+                <div>
+                  <div class="_9GQWrZ">S24 FE Dimensions</div>
+                  <div class="AoD2-N">
+                    <p>17.08 cm (6.7) Dynamic AMOLED 2X Display</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+  
+        <div class="pqHCzB hJ2VAV" [class.visible]="isFeatureVisible">
+          <div class="CB-A+e w9oVFJ">
+            <div>
+              <div>
+                <div class="_0B07y7 sR34dU Zhp430"><img
+                    src="https://rukminim2.flixcart.com/image/200/200/cms-rpd-img/66e37900eef6403ebd350d487ae31f6c_19666f21054_7.jpg.jpeg?q=90"
+                    style="max-width: 100%; vertical-align: middle;"></div>
+                <div>
+                  <div class="_9GQWrZ">Whats in the Box</div>
+                  <div class="AoD2-N">
+                    <p>Handset, Data Cable (USB Type C-C), Ejection Pin, Quick Start Guide</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        @if(!isFeatureVisible){
+        <button (click)="viewFeature()" class="QqFHMw ik7Tlh">View all features</button>
+        }
+      </div>
+    }
+
+    <!-- product details -->
+
+    <div class="HgsTk col-12 d-block">
+      <div class="_3Fm-hO">
+        <div class="_8tSq3v">Specifications</div>
+        <div>
+          <div class="_1OjC5I pKBIUH" [class.expanded]="isExpanded">
+            @for(section of product?.otherDetails?.attributes;track section.section){
+              <div class="GNDEQ-">
+                <div class="_4BJ2V+">{{section?.section}}</div>
+                <table class="_0ZhAN9">
+                  <tbody>
+                    @for(spec of section?.specs;track spec.title){
+                      <tr class="WJdYP6 row">
+                        <td class="+fFi1w col col-3">{{spec?.title}}</td>
+                        <td class="Izz52n col col-9">
+                          <ul class="m-0 p-0">
+                            <li class="HPETK2 ">{{spec?.value}}
+                            </li>
+                          </ul>
+                        </td>
+                      </tr>
+                    }
+                  </tbody>
+                </table>
+              </div>
+            }
+
+             
+
+          </div>
+          @if(!isExpanded){
+          <ng-container>
+            <button (click)="readMore()" class="QqFHMw _4FgsLt">Read More</button>
+          </ng-container>
+          }
+        </div>
+      </div>
+    </div>
+
+
+    <!-- product review by user -->
+
+    <div class="Skletd_ col-12 p-0 d-block">
+      <div class="col col p-0 pPAw9M">
+        <div class="OVvZks d-flex justify-content-between">
+          <div class="K5lpE5">Ratings &amp; Reviews</div>
+          <div class="jvKz74">
+            <button class="QqFHMw YEbu1k" type="submit">
+              <span>Rate Product</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="row q4T7rk _8-rIO3">
+          <div class="HO1dRb">
+            <div class="row p-0">
+              <div class="col-4 p-0">
+                <div class="col p-0">
+                  <div class="row p-0">
+                    <div class="col-12 p-0 ggs1+C text-center">
+                      <div class="ipqd2A">4.5</div>
+                      <div class="u12NqW">★</div>
+                    </div>
+                  </div>
+                  <div class="row p-0 j-aW8Z">
+                    <div class="col-12 p-0"><span>39,122 Ratings &amp;</span></div>
+                  </div>
+                  <div class="row p-0 j-aW8Z">
+                    <div class="col-12 p-0"><span>2,453 Reviews</span></div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-8 _4b4d6T _6w2YSo">
+                <div class="wNNofW umNoyb">
+                  <ul class="lpANVI p-0">
+                    <li class="fQ-FC1">
+                      <div class="x2IWCo"><span class="Fig8YH">5</span><span class="kDyB8d">★</span></div>
+                    </li>
+                    <li class="fQ-FC1">
+                      <div class="x2IWCo"><span class="Fig8YH">4</span><span class="kDyB8d">★</span></div>
+                    </li>
+                    <li class="fQ-FC1">
+                      <div class="x2IWCo"><span class="Fig8YH">3</span><span class="kDyB8d">★</span></div>
+                    </li>
+                    <li class="fQ-FC1">
+                      <div class="x2IWCo"><span class="Fig8YH">2</span><span class="kDyB8d">★</span></div>
+                    </li>
+                    <li class="fQ-FC1">
+                      <div class="x2IWCo"><span class="Fig8YH">1</span><span class="kDyB8d">★</span></div>
+                    </li>
+                  </ul>
+                  <ul class="GwkPFK p-0">
+                    <li class="fQ-FC1">
+                      <div>
+                        <div class="rsSAZB"><span class="DoUsN7 _3LjBlS" style="width: 100%;"></span></div>
+                      </div>
+                    </li>
+                    <li class="fQ-FC1">
+                      <div>
+                        <div class="rsSAZB"><span class="DoUsN7 CjJqlS" style="width: 26.2656%;"></span></div>
+                      </div>
+                    </li>
+                    <li class="fQ-FC1">
+                      <div>
+                        <div class="rsSAZB"><span class="DoUsN7 +mCBvS" style="width: 5.11236%;"></span></div>
+                      </div>
+                    </li>
+                    <li class="fQ-FC1">
+                      <div>
+                        <div class="rsSAZB"><span class="DoUsN7 _9VMLX8" style="width: 2.14712%;"></span></div>
+                      </div>
+                    </li>
+                    <li class="fQ-FC1">
+                      <div>
+                        <div class="rsSAZB"><span class="DoUsN7 SDgpiC" style="width: 6.24129%;"></span></div>
+                      </div>
+                    </li>
+                  </ul>
+                  <ul class="+psZUR p-0">
+                    <li class="fQ-FC1">
+                      <div class="BArk-j">27,991</div>
+                    </li>
+                    <li class="fQ-FC1">
+                      <div class="BArk-j">7,352</div>
+                    </li>
+                    <li class="fQ-FC1">
+                      <div class="BArk-j">1,431</div>
+                    </li>
+                    <li class="fQ-FC1">
+                      <div class="BArk-j">601</div>
+                    </li>
+                    <li class="fQ-FC1">
+                      <div class="BArk-j">1,747</div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="Nwhkb3">
+            <div class="row P-0"><a class="col-3 zbCsdp zsSYMX">
+                <div class="_5nb2hu">
+                  <div class="tobygM"><svg class="y5U2lD" viewBox="0 0 100 100">
+                      <path class="FhjqaA" d="M50,4 A 46,46,0,1,1,49.9999,4" stroke-width="8" fill-opacity="0"></path>
+                      <path class="ucl9bG" d="M50,4 A 46,46,0,1,1,22.961878394546225,12.785218258752423"
+                        stroke-width="8" fill-opacity="0"></path><text class="_2DdnFS" x="50" y="50">4.5</text>
+                    </svg></div>
+                  <div class="NTiEl0">Camera</div>
+                </div>
+              </a><a class="col-3 zbCsdp zsSYMX">
+                <div class="_5nb2hu">
+                  <div class="tobygM"><svg class="y5U2lD" viewBox="0 0 100 100">
+                      <path class="FhjqaA" d="M50,4 A 46,46,0,1,1,49.9999,4" stroke-width="8" fill-opacity="0"></path>
+                      <path class="ucl9bG" d="M50,4 A 46,46,0,1,1,4.814786466480321,41.38045952905668" stroke-width="8"
+                        fill-opacity="0"></path><text class="_2DdnFS" x="50" y="50">3.9</text>
+                    </svg></div>
+                  <div class="NTiEl0">Battery</div>
+                </div>
+              </a><a class="col-3 zbCsdp zsSYMX">
+                <div class="_5nb2hu">
+                  <div class="tobygM"><svg class="y5U2lD" viewBox="0 0 100 100">
+                      <path class="FhjqaA" d="M50,4 A 46,46,0,1,1,49.9999,4" stroke-width="8" fill-opacity="0"></path>
+                      <path class="ucl9bG" d="M50,4 A 46,46,0,1,1,27.839330991321095,9.689892717982275" stroke-width="8"
+                        fill-opacity="0"></path><text class="_2DdnFS" x="50" y="50">4.6</text>
+                    </svg></div>
+                  <div class="NTiEl0">Display</div>
+                </div>
+              </a><a class="col-3 zbCsdp zsSYMX">
+                <div class="_5nb2hu">
+                  <div class="tobygM"><svg class="y5U2lD" viewBox="0 0 100 100">
+                      <path class="FhjqaA" d="M50,4 A 46,46,0,1,1,49.9999,4" stroke-width="8" fill-opacity="0"></path>
+                      <path class="ucl9bG" d="M50,4 A 46,46,0,1,1,22.961878394546225,12.785218258752423"
+                        stroke-width="8" fill-opacity="0"></path><text class="_2DdnFS" x="50" y="50">4.5</text>
+                    </svg></div>
+                  <div class="NTiEl0">Design</div>
+                </div>
+              </a></div>
+          </div>
+        </div>
+      </div>
+    </div>
 
   </div>
 
