@@ -23,7 +23,8 @@ export class ProductViewComponent {
     "https://rukminim2.flixcart.com/image/128/128/xif0q/mobile/h/s/u/-original-imahfw4a77zhfewy.jpeg?q=70&crop=false",
     "https://rukminim2.flixcart.com/image/128/128/xif0q/mobile/n/m/3/-original-imahfw4ahbhymx8j.jpeg?q=70&crop=false"
   ];
-
+  public isExpanded = false;
+  public isFeatureVisible = false;
   public activeIndex: number = 0;
   public mainImage: string = this.images[0];
   public activeImg: any;
@@ -41,9 +42,9 @@ export class ProductViewComponent {
   private customerService = inject(CustomerService)
   ngOnInit() {
     this.activeImg = this.activeIndex;
-    this.customerService.getProductById(2).subscribe((res : any) => {
+    this.customerService.getProductById(2).subscribe((res: any) => {
       console.log(res);
-      
+
     })
 
   }
@@ -94,8 +95,8 @@ export class ProductViewComponent {
     const yPercent = (y / rect.height) * 100;
 
     this.backgroundPosition = `${xPercent}% ${yPercent}%`;
-    console.log('backgroundPosition',this.backgroundPosition);
-    
+    console.log('backgroundPosition', this.backgroundPosition);
+
   }
 
   onMouseMove(event: MouseEvent) {
@@ -117,8 +118,16 @@ export class ProductViewComponent {
     const yPercent = (mouseY / rect.height) * 100;
 
     this.zoomBackground = `${xPercent}% ${yPercent}%`;
-    console.log('zoomBackPosition',this.zoomBackground);
+    console.log('zoomBackPosition', this.zoomBackground);
 
+  }
+
+  readMore() {
+    this.isExpanded = true;
+  }
+
+  viewFeature() {
+    this.isFeatureVisible = true;
   }
 
 }
