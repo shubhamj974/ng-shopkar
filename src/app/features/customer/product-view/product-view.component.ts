@@ -2,11 +2,12 @@ import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
 import { ProductCategoryMenuComponent } from '../product-category-menu/product-category-menu.component';
 import { CustomerService } from '../service/customer.service';
+import { ProductListComponent } from '../product-list/product-list.component';
 
 @Component({
   selector: 'app-product-view',
   standalone: true,
-  imports: [CommonModule, ProductCategoryMenuComponent],
+  imports: [CommonModule, ProductCategoryMenuComponent, ProductListComponent],
   templateUrl: './product-view.component.html',
   styleUrl: './product-view.component.scss'
 })
