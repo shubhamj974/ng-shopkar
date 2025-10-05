@@ -19,14 +19,17 @@ export class ProductViewComponent {
   public activeImg: any;
   public zoomVisible = false;
   public backgroundPosition = '0% 0%';
-  public product :any = {}
-  lensVisible = false;
-  lensWidth = 180;
-  lensHeight = 100;
-  lensX = 0;
-  lensY = 0;
-  zoomBackground = '0% 0%';
-  zoomSize = '150%';
+  public product: any = {}
+  public lensVisible = false;
+  public lensWidth = 180;
+  public lensHeight = 100;
+  public lensX = 0;
+  public lensY = 0;
+  public zoomBackground = '0% 0%';
+  public zoomSize = '150%';
+  public isWhitelisted: boolean = false;
+  public triggerBubble: boolean = false;
+  public isHeartHover = false;
 
   private customerService = inject(CustomerService)
   ngOnInit() {
@@ -46,7 +49,7 @@ export class ProductViewComponent {
     }
   }
 
-  
+
 
 
   hoverThumbnail(index: number) {
@@ -124,6 +127,23 @@ export class ProductViewComponent {
 
   viewFeature() {
     this.isFeatureVisible = true;
+  }
+
+  addWhiteList() {
+    this.isWhitelisted = !this.isWhitelisted;
+    this.triggerBubble = true;
+    setTimeout(() => {
+      this.triggerBubble = false;
+    }, 600);
+  }
+
+
+  onHeartMouseEnter() {
+    this.isHeartHover = true;
+  }
+
+  onHeartMouseLeave() {
+    this.isHeartHover = false;
   }
 
 }

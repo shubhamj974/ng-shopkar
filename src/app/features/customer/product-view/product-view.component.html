@@ -32,7 +32,7 @@
           <img id="mainImg" (mousemove)="onMouseMove($event)" [src]="getMainImageUrl(mainImage)" alt="Product Image"
             class="image">
           }
-          <div class="lens" *ngIf="lensVisible" [ngStyle]="{
+          <div class="lens" *ngIf="lensVisible && !isHeartHover" [ngStyle]="{
             'top.px': lensY,
             'left.px': lensX,
             'width.px': lensWidth,
@@ -41,6 +41,26 @@
 
           </div>
         </div>
+
+        <!-- Add white list -->
+
+        <div (click)="addWhiteList()" (mouseenter)="onHeartMouseEnter()" (mouseleave)="onHeartMouseLeave()"
+          [ngClass]="{'ML8FwT': isWhitelisted}" class="oUss6M _2EB96d">
+          <div class="+7E521">
+            <svg xmlns="http://www.w3.org/2000/svg" class="N1bADF" width="16" height="16" viewBox="0 0 20 16">
+              <path
+                d="M8.695 16.682C4.06 12.382 1 9.536 1 6.065 1 3.219 3.178 1 5.95 1c1.566 0 3.069.746 4.05 1.915C10.981 1.745 12.484 1 14.05 1 16.822 1 19 3.22 19 6.065c0 3.471-3.06 6.316-7.695 10.617L10 17.897l-1.305-1.215z"
+                class="x1UMqG" stroke="#FFF" fill-rule="evenodd">
+              </path>
+            </svg>
+
+            <!-- Bubbles container -->
+            <div class="bubble-container" *ngIf="isWhitelisted">
+              <span></span><span></span><span></span><span></span><span></span>
+            </div>
+          </div>
+        </div>
+
       </div>
 
       <!-- action buttons -->
@@ -237,43 +257,42 @@
     </div>
 
     <!-- exchanges offer -->
-     @if(product?.exchangeOptions?.length){
-       <div class="exchange-options-container">
-         <label class="exchange-option" style="background-color: #f5faff;">
-           <input type="radio" name="exchange-options" checked>
-           <div class="radio-custom"></div>
-           <div class="option-text d-flex flex-row justify-content-between">
-             <div class="option-title">{{ product?.exchangeOptions[0]?.type}}</div>
-             <div class="option-price">₹{{ product?.exchangeOptions[0]?.price }}</div>
-           </div>
-         </label>
-   
-         <label class="exchange-option disabled">
-           <input type="radio" name="exchange-options" disabled>
-           <div class="radio-custom"></div>
-           <div class="option-text">
-             <div class="title-price">
-               <div class="option-title">{{ product?.exchangeOptions[0]?.type}}</div>
-               <div class="option-price">₹{{ product?.exchangeOptions[0]?.price }}</div>
-             </div>
-             @if(product?.exchangeOptions[1]?.note){
-             <div class="exchange-info">{{product?.exchangeOptions[1]?.note}}</div>
-             }@else{
-             <div class="exchange-info">Enter pincode to check if exchange is available</div>
-             }
-           </div>
-         </label>
-       </div>
-     }
+    @if(product?.exchangeOptions?.length){
+    <div class="exchange-options-container">
+      <label class="exchange-option" style="background-color: #f5faff;">
+        <input type="radio" name="exchange-options" checked>
+        <div class="radio-custom"></div>
+        <div class="option-text d-flex flex-row justify-content-between">
+          <div class="option-title">{{ product?.exchangeOptions[0]?.type}}</div>
+          <div class="option-price">₹{{ product?.exchangeOptions[0]?.price }}</div>
+        </div>
+      </label>
+
+      <label class="exchange-option disabled">
+        <input type="radio" name="exchange-options" disabled>
+        <div class="radio-custom"></div>
+        <div class="option-text">
+          <div class="title-price">
+            <div class="option-title">{{ product?.exchangeOptions[0]?.type}}</div>
+            <div class="option-price">₹{{ product?.exchangeOptions[0]?.price }}</div>
+          </div>
+          @if(product?.exchangeOptions[1]?.note){
+          <div class="exchange-info">{{product?.exchangeOptions[1]?.note}}</div>
+          }@else{
+          <div class="exchange-info">Enter pincode to check if exchange is available</div>
+          }
+        </div>
+      </label>
+    </div>
+    }
 
     <!-- warranty-box -->
 
     <div class="warranty-box d-flex align-items-center py-3 mb-3">
       <!-- Image -->
       <div class="warranty-img me-4">
-        <img
-          [src]="product?.otherDetails?.warranty?.brandLogo"
-          [alt]="product?.otherDetails?.warranty?.brandLogo"  class="img-fluid">
+        <img [src]="product?.otherDetails?.warranty?.brandLogo" [alt]="product?.otherDetails?.warranty?.brandLogo"
+          class="img-fluid">
       </div>
 
       <!-- Text -->
@@ -292,28 +311,25 @@
         <span class="option-title">Color</span>
         <ul class="option-list d-flex flex-wrap mb-0">
           @for(color of product?.colors;track color.id){
-            <li class="active"><img
-              [src]="color?.img"
-              alt="color?.name"
-              >
-              </li>
+          <li class="active"><img [src]="color?.img" alt="color?.name">
+          </li>
           }
-         
+
         </ul>
       </div>
 
       <!-- Storage Column -->
-       @if(product?.otherDetails?.storageOptions.length > 1){
-         <div class="col-md-6 d-flex">
-           <span class="option-title">Storage</span>
-           <ul class="option-list d-flex flex-wrap mb-0 wxy">
-            @for(storage of product?.otherDetails?.storageOptions;track storage){
-              <li class="active">{{storage}}</li>
-            }
-           </ul>
-         </div>
+      @if(product?.otherDetails?.storageOptions.length > 1){
+      <div class="col-md-6 d-flex">
+        <span class="option-title">Storage</span>
+        <ul class="option-list d-flex flex-wrap mb-0 wxy">
+          @for(storage of product?.otherDetails?.storageOptions;track storage){
+          <li class="active">{{storage}}</li>
+          }
+        </ul>
+      </div>
 
-       }
+      }
     </div>
 
     <!-- delivery-box -->
@@ -340,9 +356,9 @@
           <div class="section-title">Highlights</div>
           <ul class="section-list wytuew">
             @for(highLig of product?.otherDetails?.highlights;track highLig){
-              <li>{{highLig}}</li>
+            <li>{{highLig}}</li>
             }
-             
+
           </ul>
         </div>
       </div>
@@ -354,7 +370,8 @@
           <div class="HQijVm">
             <ul class="section-list">
               <li>{{product?.otherDetails?.paymentOptions?.EMI}}</li>
-              <li>{{product?.otherDetails?.paymentOptions?.methods[0]}} &amp; {{product?.otherDetails?.paymentOptions?.methods[1]}}</li>
+              <li>{{product?.otherDetails?.paymentOptions?.methods[0]}} &amp;
+                {{product?.otherDetails?.paymentOptions?.methods[1]}}</li>
             </ul>
             <div class="view-details">View Details</div>
           </div>
@@ -387,16 +404,16 @@
           <div class="seller-features">
             <ul class="features-list">
               @for(support of product?.otherDetails?.seller?.support;track support){
-                <li class="feature-item">
-                  <div class="feature-text">
-                    {{support}}
-                    <div class="feature-help">
-                      <span class="question">?</span>
-                    </div>
+              <li class="feature-item">
+                <div class="feature-text">
+                  {{support}}
+                  <div class="feature-help">
+                    <span class="question">?</span>
                   </div>
-                </li>
+                </div>
+              </li>
               }
-               
+
             </ul>
           </div>
 
@@ -433,179 +450,179 @@
 
     <!-- product description -->
     @if(product?.otherDetails?.description){
-      <div class="col-12 d-block">
-        <div class="XSQUa3">
-          <div class="Zg-WCR">
-            Product Description
-          </div>
-  
+    <div class="col-12 d-block">
+      <div class="XSQUa3">
+        <div class="Zg-WCR">
+          Product Description
         </div>
-        <div class="pqHCzB">
-          <div class="CB-A+e w9oVFJ">
-            <div>
-              <div>
-                <div class="_0B07y7 sR34dU Zhp430 text-center">
-                  <img
-                    src="https://rukminim2.flixcart.com/image/200/200/cms-rpd-img/81b69e3640cf47269a8f3bd9c7328216_19956771077_1.jpg.jpeg?q=90"
-                    style="max-width: 100%; vertical-align: middle;">
-                </div>
-                <div>
-                  <div class="_9GQWrZ">
-                    Favourite Turned Best Seller
-                  </div>
-                  <div class="AoD2-N">
-                    <p class="m-0">India has spoken – S24 FE is 2025’s best-selling Android smartphone</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-  
-        <div class="pqHCzB">
-          <div class="CB-A+e w9oVFJ">
-            <div>
-              <div>
-                <div class="_0B07y7 IqfVRM Zhp430 text-center"><img
-                    src="https://rukminim2.flixcart.com/image/200/200/cms-rpd-img/4f144fa58b7f4c889998cd6fe5a0d1fc_19956772a1e_2.jpg.jpeg?q=90"
-                    style="max-width: 100%; vertical-align: middle;"></div>
-                <div>
-                  <div class="_9GQWrZ">Elevate Your Everyday Experience with next Gen Features</div>
-                  <div class="AoD2-N">
-                    <p>FE’s most powerful camera yet. Supported by Google Gemini and more exciting features</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-  
-        <div class="pqHCzB hJ2VAV" [class.visible]="isFeatureVisible">
-          <div class="CB-A+e w9oVFJ">
-            <div>
-              <div>
-                <div class="_0B07y7 sR34dU Zhp430"><img
-                    src="https://rukminim2.flixcart.com/image/200/200/cms-rpd-img/ebe92bdb0c3848d68d8a2d5bdee6322c_19666f238ee_2.jpg.jpeg?q=90"
-                    style="max-width: 100%; vertical-align: middle;"></div>
-                <div>
-                  <div class="_9GQWrZ">Galaxy AI for your everyday</div>
-                  <div class="AoD2-N">
-                    <p>Take your daily tasks and hobbies up a notch with Galaxy AI.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-  
-        <div class="pqHCzB hJ2VAV" [class.visible]="isFeatureVisible">
-          <div class="CB-A+e w9oVFJ">
-            <div>
-              <div>
-                <div class="_0B07y7 IqfVRM Zhp430"><img
-                    src="https://rukminim2.flixcart.com/image/200/200/cms-rpd-img/390ed4259cec433e94bf6cc3c38cba91_19666f23044_3.jpg.jpeg?q=90"
-                    style="max-width: 100%; vertical-align: middle;"></div>
-                <div>
-                  <div class="_9GQWrZ">Most powerful camera in FE series ever</div>
-                  <div class="AoD2-N">
-                    <p>Next level videos and photos</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-  
-        <div class="pqHCzB hJ2VAV" [class.visible]="isFeatureVisible">
-          <div class="CB-A+e w9oVFJ">
-            <div>
-              <div>
-                <div class="_0B07y7 sR34dU Zhp430"><img
-                    src="https://rukminim2.flixcart.com/image/200/200/cms-rpd-img/55ad0b66242742848cfe2f3b3215e001_1969080ece8_4-Desktop.jpg.jpeg?q=90"
-                    style="max-width: 100%; vertical-align: middle;"></div>
-                <div>
-                  <div class="_9GQWrZ">Performance that won’t quit</div>
-                  <div class="AoD2-N">
-                    <p>Hyper-realistic gaming experience</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-  
-        <div class="pqHCzB hJ2VAV" [class.visible]="isFeatureVisible">
-          <div class="CB-A+e w9oVFJ">
-            <div>
-              <div>
-                <div class="_0B07y7 IqfVRM Zhp430"><img
-                    src="https://rukminim2.flixcart.com/image/200/200/cms-rpd-img/45c01800a6a14b0bb3e309bc0fc68ef5_19666f22027_5.jpg.jpeg?q=90"
-                    style="max-width: 100%; vertical-align: middle;"></div>
-                <div>
-                  <div class="_9GQWrZ">See more. Do more. All day long</div>
-                  <div class="AoD2-N">
-                    <p>Immersive viewing experience with long-lasting battery</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-  
-        <div class="pqHCzB hJ2VAV" [class.visible]="isFeatureVisible">
-          <div class="CB-A+e w9oVFJ">
-            <div>
-              <div>
-                <div class="_0B07y7 sR34dU Zhp430"><img
-                    src="https://rukminim2.flixcart.com/image/200/200/cms-rpd-img/1de68c0a8e2a440788fe541092bb20cc_19666f21bcf_6.jpg.jpeg?q=90"
-                    style="max-width: 100%; vertical-align: middle;"></div>
-                <div>
-                  <div class="_9GQWrZ">Privacy, secured. Durability, ensured</div>
-                  <div class="AoD2-N">
-                    <p>Enjoy unmatched privacy and durability</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-  
-        <div class="pqHCzB hJ2VAV" [class.visible]="isFeatureVisible">
-          <div class="CB-A+e w9oVFJ">
-            <div>
-              <div>
-                <div>
-                  <div class="_9GQWrZ">S24 FE Dimensions</div>
-                  <div class="AoD2-N">
-                    <p>17.08 cm (6.7) Dynamic AMOLED 2X Display</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-  
-        <div class="pqHCzB hJ2VAV" [class.visible]="isFeatureVisible">
-          <div class="CB-A+e w9oVFJ">
-            <div>
-              <div>
-                <div class="_0B07y7 sR34dU Zhp430"><img
-                    src="https://rukminim2.flixcart.com/image/200/200/cms-rpd-img/66e37900eef6403ebd350d487ae31f6c_19666f21054_7.jpg.jpeg?q=90"
-                    style="max-width: 100%; vertical-align: middle;"></div>
-                <div>
-                  <div class="_9GQWrZ">Whats in the Box</div>
-                  <div class="AoD2-N">
-                    <p>Handset, Data Cable (USB Type C-C), Ejection Pin, Quick Start Guide</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        @if(!isFeatureVisible){
-        <button (click)="viewFeature()" class="QqFHMw ik7Tlh">View all features</button>
-        }
+
       </div>
+      <div class="pqHCzB">
+        <div class="CB-A+e w9oVFJ">
+          <div>
+            <div>
+              <div class="_0B07y7 sR34dU Zhp430 text-center">
+                <img
+                  src="https://rukminim2.flixcart.com/image/200/200/cms-rpd-img/81b69e3640cf47269a8f3bd9c7328216_19956771077_1.jpg.jpeg?q=90"
+                  style="max-width: 100%; vertical-align: middle;">
+              </div>
+              <div>
+                <div class="_9GQWrZ">
+                  Favourite Turned Best Seller
+                </div>
+                <div class="AoD2-N">
+                  <p class="m-0">India has spoken – S24 FE is 2025’s best-selling Android smartphone</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pqHCzB">
+        <div class="CB-A+e w9oVFJ">
+          <div>
+            <div>
+              <div class="_0B07y7 IqfVRM Zhp430 text-center"><img
+                  src="https://rukminim2.flixcart.com/image/200/200/cms-rpd-img/4f144fa58b7f4c889998cd6fe5a0d1fc_19956772a1e_2.jpg.jpeg?q=90"
+                  style="max-width: 100%; vertical-align: middle;"></div>
+              <div>
+                <div class="_9GQWrZ">Elevate Your Everyday Experience with next Gen Features</div>
+                <div class="AoD2-N">
+                  <p>FE’s most powerful camera yet. Supported by Google Gemini and more exciting features</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pqHCzB hJ2VAV" [class.visible]="isFeatureVisible">
+        <div class="CB-A+e w9oVFJ">
+          <div>
+            <div>
+              <div class="_0B07y7 sR34dU Zhp430"><img
+                  src="https://rukminim2.flixcart.com/image/200/200/cms-rpd-img/ebe92bdb0c3848d68d8a2d5bdee6322c_19666f238ee_2.jpg.jpeg?q=90"
+                  style="max-width: 100%; vertical-align: middle;"></div>
+              <div>
+                <div class="_9GQWrZ">Galaxy AI for your everyday</div>
+                <div class="AoD2-N">
+                  <p>Take your daily tasks and hobbies up a notch with Galaxy AI.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pqHCzB hJ2VAV" [class.visible]="isFeatureVisible">
+        <div class="CB-A+e w9oVFJ">
+          <div>
+            <div>
+              <div class="_0B07y7 IqfVRM Zhp430"><img
+                  src="https://rukminim2.flixcart.com/image/200/200/cms-rpd-img/390ed4259cec433e94bf6cc3c38cba91_19666f23044_3.jpg.jpeg?q=90"
+                  style="max-width: 100%; vertical-align: middle;"></div>
+              <div>
+                <div class="_9GQWrZ">Most powerful camera in FE series ever</div>
+                <div class="AoD2-N">
+                  <p>Next level videos and photos</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pqHCzB hJ2VAV" [class.visible]="isFeatureVisible">
+        <div class="CB-A+e w9oVFJ">
+          <div>
+            <div>
+              <div class="_0B07y7 sR34dU Zhp430"><img
+                  src="https://rukminim2.flixcart.com/image/200/200/cms-rpd-img/55ad0b66242742848cfe2f3b3215e001_1969080ece8_4-Desktop.jpg.jpeg?q=90"
+                  style="max-width: 100%; vertical-align: middle;"></div>
+              <div>
+                <div class="_9GQWrZ">Performance that won’t quit</div>
+                <div class="AoD2-N">
+                  <p>Hyper-realistic gaming experience</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pqHCzB hJ2VAV" [class.visible]="isFeatureVisible">
+        <div class="CB-A+e w9oVFJ">
+          <div>
+            <div>
+              <div class="_0B07y7 IqfVRM Zhp430"><img
+                  src="https://rukminim2.flixcart.com/image/200/200/cms-rpd-img/45c01800a6a14b0bb3e309bc0fc68ef5_19666f22027_5.jpg.jpeg?q=90"
+                  style="max-width: 100%; vertical-align: middle;"></div>
+              <div>
+                <div class="_9GQWrZ">See more. Do more. All day long</div>
+                <div class="AoD2-N">
+                  <p>Immersive viewing experience with long-lasting battery</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pqHCzB hJ2VAV" [class.visible]="isFeatureVisible">
+        <div class="CB-A+e w9oVFJ">
+          <div>
+            <div>
+              <div class="_0B07y7 sR34dU Zhp430"><img
+                  src="https://rukminim2.flixcart.com/image/200/200/cms-rpd-img/1de68c0a8e2a440788fe541092bb20cc_19666f21bcf_6.jpg.jpeg?q=90"
+                  style="max-width: 100%; vertical-align: middle;"></div>
+              <div>
+                <div class="_9GQWrZ">Privacy, secured. Durability, ensured</div>
+                <div class="AoD2-N">
+                  <p>Enjoy unmatched privacy and durability</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pqHCzB hJ2VAV" [class.visible]="isFeatureVisible">
+        <div class="CB-A+e w9oVFJ">
+          <div>
+            <div>
+              <div>
+                <div class="_9GQWrZ">S24 FE Dimensions</div>
+                <div class="AoD2-N">
+                  <p>17.08 cm (6.7) Dynamic AMOLED 2X Display</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pqHCzB hJ2VAV" [class.visible]="isFeatureVisible">
+        <div class="CB-A+e w9oVFJ">
+          <div>
+            <div>
+              <div class="_0B07y7 sR34dU Zhp430"><img
+                  src="https://rukminim2.flixcart.com/image/200/200/cms-rpd-img/66e37900eef6403ebd350d487ae31f6c_19666f21054_7.jpg.jpeg?q=90"
+                  style="max-width: 100%; vertical-align: middle;"></div>
+              <div>
+                <div class="_9GQWrZ">Whats in the Box</div>
+                <div class="AoD2-N">
+                  <p>Handset, Data Cable (USB Type C-C), Ejection Pin, Quick Start Guide</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      @if(!isFeatureVisible){
+      <button (click)="viewFeature()" class="QqFHMw ik7Tlh">View all features</button>
+      }
+    </div>
     }
 
     <!-- product details -->
@@ -616,27 +633,27 @@
         <div>
           <div class="_1OjC5I pKBIUH" [class.expanded]="isExpanded">
             @for(section of product?.otherDetails?.attributes;track section.section){
-              <div class="GNDEQ-">
-                <div class="_4BJ2V+">{{section?.section}}</div>
-                <table class="_0ZhAN9">
-                  <tbody>
-                    @for(spec of section?.specs;track spec.title){
-                      <tr class="WJdYP6 row">
-                        <td class="+fFi1w col col-3">{{spec?.title}}</td>
-                        <td class="Izz52n col col-9">
-                          <ul class="m-0 p-0">
-                            <li class="HPETK2 ">{{spec?.value}}
-                            </li>
-                          </ul>
-                        </td>
-                      </tr>
-                    }
-                  </tbody>
-                </table>
-              </div>
+            <div class="GNDEQ-">
+              <div class="_4BJ2V+">{{section?.section}}</div>
+              <table class="_0ZhAN9">
+                <tbody>
+                  @for(spec of section?.specs;track spec.title){
+                  <tr class="WJdYP6 row">
+                    <td class="+fFi1w col col-3">{{spec?.title}}</td>
+                    <td class="Izz52n col col-9">
+                      <ul class="m-0 p-0">
+                        <li class="HPETK2 ">{{spec?.value}}
+                        </li>
+                      </ul>
+                    </td>
+                  </tr>
+                  }
+                </tbody>
+              </table>
+            </div>
             }
 
-             
+
 
           </div>
           @if(!isExpanded){
