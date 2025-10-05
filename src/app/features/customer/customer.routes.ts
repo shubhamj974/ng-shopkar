@@ -3,6 +3,7 @@ import { FullComponent } from './full/full.component';
 import { ProductViewComponent } from './product-view/product-view.component';
 import { ProductListComponent } from './product-list/product-list.component';
 import { HomeComponent } from './home/home.component';
+import { ViewCartComponent } from './view-cart/view-cart.component';
 
 export const CustomerRoutes: Routes = [
   // customer.routes.ts
@@ -22,6 +23,10 @@ export const CustomerRoutes: Routes = [
       path: 'product/:id',
       component: ProductViewComponent,
     },
+    {
+      path : 'viewcart',
+      component : ViewCartComponent
+    }
   ],
 }
 
